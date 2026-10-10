@@ -1,0 +1,33 @@
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+
+from app import models  # noqa: F401  (registra los modelos en la metadata)
+from app.db.base import Base
+from app.db.session import engine
+from app.routers import turnos
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    Base.metadata.create_all(bind=engine)
+    yield
+
+
+app = FastAPI(title="API de turnos — consultorio odontológico", lifespan=lifespan)
+
+app.include_router(turnos.router)
+
+
+@app.get("/api/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
+@app.exception_handler(RequestValidationError)
+async def request_validation_handler(
+    request: Request, exc: RequestValidationError
+) -> JSONResponse:
+    return JSONResponse(status_code=400, content={"detail": exc.errors()})

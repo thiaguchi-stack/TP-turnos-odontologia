@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Bases de datos locales
+*.db
+*.sqlite3
+
+# Entorno / secretos (nunca commitear credenciales)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
+
+# Documentos de trabajo temporales
+*.tmp
+*.log
