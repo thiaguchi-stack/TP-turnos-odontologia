@@ -4,8 +4,8 @@
   "owner": "active-orchestrator",
   "discovery": {
     "created_by": "discovery-research",
-    "status": "incomplete",
-    "note": "Discovery parkeado por el usuario para avanzar a kb-creator. Q&A de los 11 puntos sin completar. Competidores relevados via web-scraper.",
+    "status": "completed",
+    "note": "Entregables de la etapa 2 completados el 2026-10-11: informe consolidado (docs/discovery/informe-discovery.md + .pdf), checklist de los 11 puntos (docs/discovery/checklist-discovery-research.md) y bitacora de inspeccion (docs/bitacora-inspeccion.md). El Q&A interactivo original quedo parkeado; el checklist se reconstruyo desde el research de docs/discovery/raw/ con nota de honestidad.",
     "sources": [
       "https://dentaltotal.com.ar/",
       "https://doctoraliar.com.ar",
@@ -16,18 +16,7 @@
       { "name": "Doctoralia Argentina", "notes_file": "discovery/sources/doctoralia-argentina.md" },
       { "name": "TM Dental", "notes_file": "discovery/sources/tm-dental.md" }
     ],
-    "pending": [
-      "problema",
-      "usuarios",
-      "casos_de_uso",
-      "funcionalidades_necesarias",
-      "funcionalidades_opcionales",
-      "reglas_de_negocio",
-      "integraciones",
-      "restricciones",
-      "riesgos",
-      "preguntas_abiertas"
-    ]
+    "pending": []
   },
   "roadmap": {
     "created_by": "roadmap-generator",
