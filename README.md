@@ -8,7 +8,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 - ✅ **Discovery / investigación de mercado**: 34 sistemas relevados en `discovery/raw/` + verificación de fuentes en `discovery/verificacion-fuentes.md`.
 - ✅ **Primer ciclo OPSX cerrado**: change `crear-turno-sin-solapamientos` (desvío deliberado → `C-07`/`C-08`), implementado y archivado con spec sincronizado.
 - ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **72 tests passing**.
-- ✅ **Fundación C-01**: `c-01-foundation-setup` implementado (CORS configurable, stub `core/security.py`, `.env.example` y scaffold `frontend/` Vite + React 18 + TS con build verificado). Pendiente de archivar.
+- ✅ **Fundación C-01**: `c-01-foundation-setup` implementado y archivado (CORS configurable, stub `core/security.py`, `.env.example` y scaffold `frontend/` Vite + React 18 + TS con build verificado).
 - 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-02 → C-03 → …` (ver `CHANGES.md`).
 
 ## Dónde está cada entregable
@@ -26,7 +26,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 | Instrucciones para agentes | [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) | ✅ |
 | Especificaciones OpenSpec vigentes | [`openspec/specs/turnos/`](openspec/specs/turnos/) | ✅ |
 | Change archivado `crear-turno-sin-solapamientos` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-10-crear-turno-sin-solapamientos/`](openspec/changes/archive/2026-10-10-crear-turno-sin-solapamientos/) | ✅ archivado |
-| Change `c-01-foundation-setup` (proposal, design, tasks, spec delta) | [`openspec/changes/c-01-foundation-setup/`](openspec/changes/c-01-foundation-setup/) | ✅ implementado (archive pendiente) |
+| Change archivado `c-01-foundation-setup` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-15-c-01-foundation-setup/`](openspec/changes/archive/2026-10-15-c-01-foundation-setup/) | ✅ archivado |
 | Backend (implementación) | [`backend/app/`](backend/app/) → detalle en [`backend/README.md`](backend/README.md) | ✅ |
 | Tests | [`backend/tests/`](backend/tests/) | ✅ 72 passing |
 | Evidencias (verify + trazabilidad, pytest/ruff, explore, skills) | [`docs/evidencias/`](docs/evidencias/) | ✅ |
@@ -66,7 +66,8 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 ├── openspec/
 │   ├── specs/turnos/            Spec vigente (capability turnos)
 │   └── changes/
-│       ├── c-01-foundation-setup/           Change implementado (archive pendiente)
+│       ├── archive/
+│       │   └── 2026-10-15-c-01-foundation-setup/   Change archivado
 │       └── archive/2026-10-10-crear-turno-sin-solapamientos/
 ├── backend/
 │   ├── app/                     API FastAPI (core, db, models, schemas, services, routers)

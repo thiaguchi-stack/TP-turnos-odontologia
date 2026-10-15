@@ -129,7 +129,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 ## FASE 0 — Cimientos
 
 ### [C-01] `foundation-setup`
-- **Estado**: `[x]` implementado (archive pendiente)
+- **Estado**: `[x]` archivado (2026-10-15)
 - **Scope**: Scaffolding del monorepo + infraestructura base
   - Estructura: `backend/app/{core,models,schemas,services,routers,db}`, `backend/tests/`, `frontend/src/{pages,components,services,shared}`
   - `backend/`: app FastAPI mínima con `GET /api/health`, `core/config.py` (Pydantic Settings), `core/security.py` stub, CORS desde `CORS_ORIGINS`

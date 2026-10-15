@@ -15,7 +15,7 @@ El recorrido fue Discovery → Knowledge Base → roadmap → implementación, e
 1. **Discovery (Etapa 2):** investigación de 34 sistemas en tres rondas (Argentina, LatAm, internacional) con verificación de fuentes posterior. La convención `(C)` comprobado / `(A)` declarado / `No evidenciado` fue la regla que más me sirvió: obliga a no deducir por analogía. El informe, el checklist y la bitácora quedaron en `discovery/` y `docs/`.
 2. **Knowledge Base:** 10 archivos canónicos (`knowledge-base/`) con visión, actores, modelo de datos, reglas de negocio numeradas (RN-XX-NN), decisiones (DD) y supuestos (SU). Es la fuente de verdad: todo lo que se codeó después se podía rastrear hasta una sección de la KB.
 3. **Roadmap:** `CHANGES.md` con 18 changes en 6 fases, árbol de dependencias, camino crítico de 10 changes y nivel de *governance* por change.
-4. **Flujo OpenSpec:** `openspec init`, luego el ciclo completo explore → propose → apply → verify → archive sobre el change de consigna, y el change de fundación `c-01-foundation-setup`, cuyas 14 tasks se implementaron el 2026-10-15 (scaffold frontend, CORS configurable y stub de seguridad), pendiente solo de archivar.
+4. **Flujo OpenSpec:** `openspec init`, luego el ciclo completo explore → propose → apply → verify → archive sobre el change de consigna, y el change de fundación `c-01-foundation-setup`, cuyas 14 tasks se implementaron y archivaron el 2026-10-15 (scaffold frontend, CORS configurable y stub de seguridad).
 5. **Skills:** las skills del proyecto quedaron migradas a `.agents/skills/` con su registro, para que cualquier agente (o yo, a la semana siguiente) sepa qué herramienta corresponde a cada fase.
 
 ## 3. Decisiones y desvíos
@@ -24,7 +24,7 @@ El desvío más importante fue **deliberado y documentado**: en vez de encadenar
 
 El stack (React + Vite, FastAPI, SQLAlchemy, SQLite) fue **stack libre**, confirmado por SU-05: la cátedra no impuso tecnología ni deploy. Lo elegí por separación de capas y testabilidad (DD-01), no por moda.
 
-Lo que quedó pendiente tiene una explicación honesta: el backend existente no salió de `C-01`, sino del change de consigna (modelos mínimos, servicio y `POST /turnos`), de modo que `C-01` quedó en deuda hasta el 2026-10-15, cuando se implementó completo (14/14 tasks: scaffold de frontend, stub de `security.py`, CORS y `.env.example`). El ciclo del roadmap va **1 archivado + 1 implementado por archivar**; el que sigue en el árbol es `C-02 core-models`, con governance CRITICO.
+Lo que quedó pendiente tiene una explicación honesta: el backend existente no salió de `C-01`, sino del change de consigna (modelos mínimos, servicio y `POST /turnos`), de modo que `C-01` quedó en deuda hasta el 2026-10-15, cuando se implementó completo (14/14 tasks: scaffold de frontend, stub de `security.py`, CORS y `.env.example`). El ciclo del roadmap va **2 archivados**; el que sigue en el árbol es `C-02 core-models`, con governance CRITICO.
 
 ## 4. Qué salió bien y qué queda pendiente
 
@@ -39,7 +39,6 @@ Lo que quedó pendiente tiene una explicación honesta: el backend existente no 
 
 - Las pantallas y la lógica de la Fase 4 (`C-11` a `C-15`): existe el scaffold de React (build y `tsc` en verde), pero todavía sin páginas de reserva ni zona protegida.
 - Auth JWT + RBAC (`C-03`, CRITICO), motor de agenda con franjas (`C-07`), reserva pública (`C-09`), hardening de privacidad (`C-17`, CRITICO), seed demo y aceptación E2E (`C-16`, `C-18`).
-- El archive formal de `C-01`: las 14 tasks están `[x]` y las specs listas para sincronizar, pero el cambio aún no se archivó.
 - El Q&A interactivo de 11 puntos del Discovery quedó parkeado; el checklist se reconstruyó desde los raw con nota de honestidad, y `CHANGES.md` todavía conserva la nota de "discovery incompleto".
 
 ## 5. Aprendizajes sobre ingeniería de software y trabajo individual
