@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reflexión final — TP turnos odontología</title>
+<style>
+  @page { size: A4; margin: 16mm 17mm; }
+  body { font-family: Georgia, "Times New Roman", serif; font-size: 10.5pt; line-height: 1.36; color: #1a1a1a; max-width: 178mm; margin: 0 auto; padding: 0; }
+  h1 { font-size: 15pt; text-align: center; margin: 0 0 3px; }
+  .meta { text-align: center; font-size: 9pt; color: #555; margin-bottom: 12px; font-family: Helvetica, Arial, sans-serif; }
+  h2 { font-size: 11.5pt; margin: 11px 0 4px; border-bottom: 1px solid #bbb; padding-bottom: 1px; }
+  p { margin: 5px 0; text-align: justify; }
+  ol { margin: 4px 0; padding-left: 20px; }
+  li { margin-bottom: 3px; }
+  ul { margin: 4px 0; padding-left: 20px; }
+  strong { font-weight: bold; }
+  code { font-family: Consolas, monospace; font-size: 10pt; background: #f2f2f2; padding: 0 2px; }
+</style>
+</head>
+<body>
+
+<h1>Reflexión final — TP: sistema de turnos para consultorio odontológico</h1>
+<p class="meta"><strong>Materia:</strong> Metodología I · <strong>Integrante:</strong> Thiago Oviedo · <strong>Tipo:</strong> TP individual · <strong>Fecha:</strong> 2026-10-15</p>
+
+<h2>1. Contexto y propósito</h2>
+<p>El sistema nació de un problema concreto y verificado en el research: coordinar turnos odontológicos por teléfono o WhatsApp genera ida y vuelta, dobles reservas y tiempo perdido. La propuesta es una página de turnos para un consultorio: el paciente reserva online sin llamar, y el consultorio gestiona la agenda completa (profesionales, prestaciones, bloqueos) en un solo lugar.</p>
+<p>El alcance de v1 quedó deliberadamente chico: reserva pública sin login del paciente (con token de cancelación), agenda por profesional para el admin, estados de turno (<code>reservado → confirmado → completado / cancelado</code>) y prevención de solapamientos por profesional y por sillón. Single-tenant (un consultorio, DD-02) e integraciones externas, ficha clínica y cobros fuera de alcance desde el día uno (DD-06). No es una versión tímida de un sistema grande: es el núcleo que se puede demostrar completo.</p>
+
+<h2>2. Proceso metodológico seguido</h2>
+<p>El recorrido fue Discovery → Knowledge Base → roadmap → implementación, en ese orden y sin saltear pasos:</p>
+<ol>
+<li><strong>Discovery (Etapa 2):</strong> investigación de 34 sistemas en tres rondas (Argentina, LatAm, internacional) con verificación de fuentes posterior. La convención <code>(C)</code> comprobado / <code>(A)</code> declarado / <code>No evidenciado</code> fue la regla que más me sirvió: obliga a no deducir por analogía. El informe, el checklist y la bitácora quedaron en <code>discovery/</code> y <code>docs/</code>.</li>
+<li><strong>Knowledge Base:</strong> 10 archivos canónicos (<code>knowledge-base/</code>) con visión, actores, modelo de datos, reglas de negocio numeradas (RN-XX-NN), decisiones (DD) y supuestos (SU). Es la fuente de verdad: todo lo que se codeó después se podía rastrear hasta una sección de la KB.</li>
+<li><strong>Roadmap:</strong> <code>CHANGES.md</code> con 18 changes en 6 fases, árbol de dependencias, camino crítico de 10 changes y nivel de <em>governance</em> por change.</li>
+<li><strong>Flujo OpenSpec:</strong> <code>openspec init</code>, luego el ciclo completo explore → propose → apply → verify → archive sobre el change de consigna, y el change de fundación <code>c-01-foundation-setup</code>, cuyas 14 tasks se implementaron el 2026-10-15 (scaffold frontend, CORS configurable y stub de seguridad), pendiente solo de archivar.</li>
+<li><strong>Skills:</strong> las skills del proyecto quedaron migradas a <code>.agents/skills/</code> con su registro, para que cualquier agente (o yo, a la semana siguiente) sepa qué herramienta corresponde a cada fase.</li>
+</ol>
+
+<h2>3. Decisiones y desvíos</h2>
+<p>El desvío más importante fue <strong>deliberado y documentado</strong>: en vez de encadenar <code>C-01 → C-07</code> para atacar la regla de solapamientos, hice un change autónomo y acotado, <code>crear-turno-sin-solapamientos</code>, porque <code>C-02 core-models</code> y <code>C-03 auth-jwt-rbac</code> son <em>governance</em> CRITICO y no estaban archivados. Saltar esa puerta habría significado codear con la gobernanza en pausa; en cambio se declaró el desvío en la propuesta, con la trazabilidad en <code>CHANGES.md</code> para que <code>C-02</code> absorba la persistencia después. Dos ajustes más salieron de las inspecciones: acotar el change a dominio + API (Opción B, sin frontend) y <strong>no acoplar</strong> <code>crear_turno</code> al calendario <code>HorarioAtencion</code>, para no quedar rehén de la Pregunta 8 / SU-03 (horarios semanales fijos). También se incorporó el <strong>sillón/box como recurso de primera clase</strong> (DD-09): la regla RN-TU-01 se reescribió para prohibir solapamiento por profesional <em>y</em> por sillón, algo que el research no mostraba demostrado en ningún competidor.</p>
+<p>El stack (React + Vite, FastAPI, SQLAlchemy, SQLite) fue <strong>stack libre</strong>, confirmado por SU-05: la cátedra no impuso tecnología ni deploy. Lo elegí por separación de capas y testabilidad (DD-01), no por moda.</p>
+<p>Lo que quedó pendiente tiene una explicación honesta: el backend existente no salió de <code>C-01</code>, sino del change de consigna (modelos mínimos, servicio y <code>POST /turnos</code>), de modo que <code>C-01</code> quedó en deuda hasta el 2026-10-15, cuando se implementó completo (14/14 tasks: scaffold de frontend, stub de <code>security.py</code>, CORS y <code>.env.example</code>). El ciclo del roadmap va <strong>1 archivado + 1 implementado por archivar</strong>; el que sigue en el árbol es <code>C-02 core-models</code>, con governance CRITICO.</p>
+
+<h2>4. Qué salió bien y qué queda pendiente</h2>
+<p><strong>Salió bien:</strong></p>
+<ul>
+<li><strong>72 tests verdes</strong> (<code>backend/tests</code>: unitarios del servicio con casos de borde <code>[inicio, fin)</code>, colisión por profesional, por sillón, por bloqueo, integración del <code>409</code>, más el reloj centralizado, la caracterización de turnos en el pasado y la fundación CORS/stub), y <code>mypy --strict</code> sin errores en el backend; recién ejecutados antes de escribir esto.</li>
+<li><strong>Ciclo OpenSpec completo</strong> cerrado el 2026-10-10 con la spec sincronizada en <code>openspec/specs/turnos/spec.md</code> y el cambio archivado. No quedó "código suelto": quedó spec + tests + evidencia.</li>
+<li><strong>Trazabilidad</strong>: 8 inspecciones en <code>docs/bitacora-inspeccion.md</code>, cada una con archivo y sección que la respalda; <code>git log</code> con 7 commits con propósito claro (Discovery, etapas 5-6-7, informe, propuesta C-01, migración de skills y de docs).</li>
+<li><strong>Honestidad documentada</strong>: 4 URLs muertas detectadas y corregidas con registro (I-01), 0 productos inventados, vacíos de mercado dejados como <code>No evidenciado</code> en vez de rellenados.</li>
+</ul>
+<p><strong>Queda pendiente:</strong></p>
+<ul>
+<li>Las pantallas y la lógica de la Fase 4 (<code>C-11</code> a <code>C-15</code>): existe el scaffold de React (build y <code>tsc</code> en verde), pero todavía sin páginas de reserva ni zona protegida.</li>
+<li>Auth JWT + RBAC (<code>C-03</code>, CRITICO), motor de agenda con franjas (<code>C-07</code>), reserva pública (<code>C-09</code>), hardening de privacidad (<code>C-17</code>, CRITICO), seed demo y aceptación E2E (<code>C-16</code>, <code>C-18</code>).</li>
+<li>El archive formal de <code>C-01</code>: las 14 tasks están <code>[x]</code> y las specs listas para sincronizar, pero el cambio aún no se archivó.</li>
+<li>El Q&amp;A interactivo de 11 puntos del Discovery quedó parkeado; el checklist se reconstruyó desde los raw con nota de honestidad, y <code>CHANGES.md</code> todavía conserva la nota de "discovery incompleto".</li>
+</ul>
+
+<h2>5. Aprendizajes sobre ingeniería de software y trabajo individual</h2>
+<p><strong>Repetiría:</strong> la KB antes que el código — escribir las reglas numeradas (RN-TU-01, RN-TU-02…) hizo que las decisiones de implementación fueran discusiones de una línea, no de una tarde. Repetiría el protocolo de inspección entre etapas: no es "buscar errores al final", es decidir explícitamente qué se corrige, qué se parkea y qué se documenta como pendiente; y a veces la decisión correcta es no tocar nada. Repetiría cerrar cada cambio solo con tests verdes: fue la condición objetiva de "terminado".</p>
+<p><strong>Corregiría:</strong> el orden. Si volviera a arrancar, ejecutaría <code>C-01</code> primero, antes que el change de consigna, para que el backend no quedara huérfano del roadmap y la trazabilidad fuera lineal. Corregiría también la planificación del Discovery: el Q&amp;A interactivo se parkeó por falta de tiempo y obligó a reconstruir el checklist después, cuando habría sido más barato hacerlo en el momento. Y dejaría el frontend menos para el final: en el plan es el cuello de botella (5 changes secuenciales) y hoy recién existe el scaffold, con todo el valor de la Fase 4 todavía por construir.</p>
+
+<h2>6. Mirada metodológica</h2>
+<p>La diferencia con "solo codear" se vio en tres cosas concretas. Primero, <strong>los specs y tests como condición de cierre</strong>: sin ellos, "está listo" es una opinión; con ellos, es un resultado repetible por cualquiera (72 passed). Segundo, <strong>la evidencia</strong>: cada decisión de la bitácora cita archivo y sección, lo que permite auditar el recorrido completo desde el <code>git log</code> y los docs, en lugar de reconstruirlo de memoria. Tercero, <strong>los desvíos declarados por escrito</strong>: el change autónomo no fue una improvisación, fue una decisión con su <code>proposal.md</code>, su justificación y su lugar en el roadmap.</p>
+<p>El costo es real — escribe mucho más del que codea, y a veces la documentación corre detrás del código. Pero el beneficio también: en un TP individual, donde no hay nadie que mire mi código antes de que yo lo mire de nuevo, la metodología funciona como par de ojos externo. Lo que corregiría de raíz es la sincronización entre plan y realidad: mientras <code>CHANGES.md</code>, el state file del orquestador y lo que realmente está implementado no digan lo mismo, la trazabilidad se debilita justo en el punto donde más aporta.</p>
+
+</body>
+</html>

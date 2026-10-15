@@ -1,0 +1,47 @@
+================================================================
+ Evidencia: mypy (type-check estricto) — backend
+ Change: adopción de mypy (config en backend/pyproject.toml)
+ Fecha: 2026-10-15
+ Entorno: backend\.venv  (Python 3.14.7, mypy 2.4.0)
+================================================================
+
+Configuración ([tool.mypy] en backend/pyproject.toml):
+    python_version = "3.11"
+    strict = true
+    plugins = ["pydantic.mypy"]
+
+Se corre desde backend/ (mypy resuelve app/ por pythonpath = ["."]).
+
+----------------------------------------------------------------
+Comando
+----------------------------------------------------------------
+
+$ backend\.venv\Scripts\python.exe -m mypy app
+
+----------------------------------------------------------------
+Salida real
+----------------------------------------------------------------
+
+Success: no issues found in 23 source files
+
+================================================================
+Notas — trazabilidad de la adopción
+================================================================
+
+Primer run (mypy --strict app, antes de anotar):
+  app\services\turno_service.py:14: error: Function is missing a return type annotation  [no-untyped-def]
+  app\main.py:16: error: Function is missing a return type annotation  [no-untyped-def]
+  Found 2 errors in 2 files (checked 23 source files)
+
+Errores corregidos (solo anotaciones de tipo, sin `Any`):
+  - app/main.py: `lifespan(app: FastAPI) -> AsyncIterator[None]`
+    (`from collections.abc import AsyncIterator`).
+  - app/services/turno_service.py: `_existe_o_rechaza(...) -> ModeloT`
+    con `ModeloT = TypeVar("ModeloT", bound=Base)` (el helper devuelve el
+    modelo ORM pedido; `Session.get` ya estaba tipado, solo faltaba la firma).
+
+Baseline de seguridad previo a los cambios:
+  72 passed (pytest) · ruff check clean · ruff format clean.
+
+Estado final: mypy strict sin errores; sin relajaciones (no se usó
+ignore_errors, ignore_missing_imports ni overrides por módulo).
