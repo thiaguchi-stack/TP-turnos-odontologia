@@ -1,4 +1,4 @@
 $ backend\.venv\Scripts\ruff.exe check backend
 All checks passed!
 $ backend\.venv\Scripts\ruff.exe format --check backend
-31 files already formatted
+53 files already formatted

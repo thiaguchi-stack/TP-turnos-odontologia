@@ -16,7 +16,7 @@ Rutas relativas a la raíz del repo. Todo en español rioplatense.
 |---------|--------|--------|
 | [README.md](README.md) | Este índice. | ✅ |
 | [verify-crear-turno-sin-solapamientos.md](verify-crear-turno-sin-solapamientos.md) | Pieza central del change archivado `openspec/changes/archive/2026-10-10-crear-turno-sin-solapamientos/`: comandos reales, **tabla de trazabilidad escenario de la spec → test (ruta:línea)**, huecos, lint y estado final. | ✅ |
-| [pytest-crear-turno-sin-solapamientos.txt](pytest-crear-turno-sin-solapamientos.txt) | Salida completa del runner `pytest -v` (58 tests). | ✅ |
+| [pytest-crear-turno-sin-solapamientos.txt](pytest-crear-turno-sin-solapamientos.txt) | Salida completa del runner `pytest -v` (114 tests). | ✅ |
 | [ruff-crear-turno-sin-solapamientos.txt](ruff-crear-turno-sin-solapamientos.txt) | Salida de `ruff check backend` + `ruff format --check backend`. | ✅ |
 | [mypy-backend.txt](mypy-backend.txt) | Salida de `mypy app` (`strict = true`, plugin de pydantic) desde `backend/`. | ✅ |
 | [explore-crear-turno-sin-solapamientos.md](explore-crear-turno-sin-solapamientos.md) | Resumen de la exploración previa al change (OPSX Explore), citando sus fuentes. | ✅ |

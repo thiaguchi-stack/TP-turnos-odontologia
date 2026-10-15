@@ -13,7 +13,7 @@ tests existentes con `grep` de `def test_` sobre `backend/tests/`.
 - **Fecha de la corrida**: 2026-10-15.
 - **Entorno**: `backend\.venv` (Python 3.14.7, pytest 9.1.1), SQLite en memoria
   (`backend/tests/conftest.py` → `DATABASE_URL=sqlite://`).
-- **Salidas crudas**: [pytest-crear-turno-sin-solapamientos.txt](pytest-crear-turno-sin-solapamientos.txt) · [ruff-crear-turno-sin-solapamientos.txt](ruff-crear-turno-sin-solapamientos.txt)
+- **Salidas crudas**: [pytest-crear-turno-sin-solapamientos.txt](pytest-crear-turno-sin-solapamientos.txt) · [ruff-crear-turno-sin-solapamientos.txt](ruff-crear-turno-sin-solapamientos.txt) · [mypy-backend.txt](mypy-backend.txt)
 
 ---
 
@@ -28,7 +28,7 @@ backend\.venv\Scripts\python.exe -m pytest backend\tests -v
 Resumen real (última línea del `.txt`):
 
 ```
-======================== 58 passed, 1 warning in 0.94s ========================
+======================= 114 passed, 1 warning in 8.91s ========================
 ```
 
 La única warning es del propio framework
@@ -45,10 +45,22 @@ Salida real (completa):
 
 ```
 All checks passed!
-31 files already formatted
+53 files already formatted
 ```
 
 Ambos con exit code `0`.
+
+Type-check (desde `backend\`, la config vive en `backend\pyproject.toml`):
+
+```powershell
+backend\.venv\Scripts\python.exe -m mypy app
+```
+
+Salida real:
+
+```
+Success: no issues found in 28 source files
+```
 
 > Nota de entorno: **no existe `.venv` en la raíz**; el venv real del repo es
 > `backend\.venv` (es el que indica el `README.md` §Instalación). El `python` del
@@ -90,35 +102,35 @@ sugeridos.
 |---|---|---|
 | Colisión con bloqueo del profesional (`sillon_id` nulo) → 409 | `test_colision_con_bloqueo_de_sillon_nulo` · `test_409_colision_con_bloqueo_del_profesional` (HTTP 409 + 0 filas) | `backend/tests/test_turno_service.py:96` · `backend/tests/test_turnos_api.py:86` |
 | (misma regla, bloqueo **asignado** al sillón del turno — cubre el "o asignado al sillón" del requirement) | `test_colision_con_bloqueo_del_mismo_sillon` · simétrico: `test_bloqueo_de_un_sillon_no_afecta_a_otro_sillon` | `backend/tests/test_turno_service.py:113` · `backend/tests/test_turno_service.py:130` |
-| Bloqueo de otro profesional no afecta → 201 | `test_bloqueo_de_otro_profesional_no_afecta` (nivel **servicio**: crea el turno y assert `id is not None`) | `backend/tests/test_turno_service.py:148` |
+| Bloqueo de otro profesional no afecta → 201 | `test_bloqueo_de_otro_profesional_no_afecta` (nivel **servicio**: crea el turno y assert `id is not None`) · `test_201_bloqueo_de_otro_profesional_no_afecta` (**HTTP 201** + 1 fila) | `backend/tests/test_turno_service.py:148` · `backend/tests/test_turnos_api.py:108` |
 
 ### Requirement: Intervalos de agenda semiabiertos inicio fin
 
 | Escenario | Test(s) | Ruta:línea |
 |---|---|---|
-| Borde permitido — inicia exactamente cuando termina otro → 201 | `test_borde_inicio_exactamente_al_fin_es_permitido` · `test_201_borde_inicio_igual_al_fin_de_otro_turno` (HTTP 201, 2 filas) | `backend/tests/test_turno_service.py:169` · `backend/tests/test_turnos_api.py:156` |
-| Borde rechazado — inicia 1 minuto antes del fin → 409, sin crear turno | `test_borde_inicio_un_minuto_antes_del_fin_es_rechazado` (nivel **servicio**: `pytest.raises(TurnoSolapadoError)`) | `backend/tests/test_turno_service.py:180` |
+| Borde permitido — inicia exactamente cuando termina otro → 201 | `test_borde_inicio_exactamente_al_fin_es_permitido` · `test_201_borde_inicio_igual_al_fin_de_otro_turno` (HTTP 201, 2 filas) | `backend/tests/test_turno_service.py:169` · `backend/tests/test_turnos_api.py:181` |
+| Borde rechazado — inicia 1 minuto antes del fin → 409, sin crear turno | `test_borde_inicio_un_minuto_antes_del_fin_es_rechazado` (nivel **servicio**: `pytest.raises(TurnoSolapadoError)`) · `test_409_borde_inicio_un_minuto_antes_del_fin` (**HTTP 409** + 1 fila) | `backend/tests/test_turno_service.py:180` · `backend/tests/test_turnos_api.py:197` |
 
 ### Requirement: Sin turnos en el pasado
 
 | Escenario | Test(s) | Ruta:línea |
 |---|---|---|
-| Turno en el pasado → 400, sin crear turno | `test_turno_en_el_pasado_es_rechazado` · `test_400_turno_en_el_pasado` (HTTP 400 + 0 filas) | `backend/tests/test_turno_service.py:202` · `backend/tests/test_turnos_api.py:108` |
+| Turno en el pasado → 400, sin crear turno | `test_turno_en_el_pasado_es_rechazado` · `test_400_turno_en_el_pasado` (HTTP 400 + 0 filas) | `backend/tests/test_turno_service.py:202` · `backend/tests/test_turnos_api.py:133` |
 
 ### Requirement: Solo recursos activos admiten turnos nuevos
 
 | Escenario | Test(s) | Ruta:línea |
 |---|---|---|
-| Profesional inactivo → 400 | `test_profesional_inactivo_es_rechazado` · `test_400_profesional_inactivo` (HTTP 400 + 0 filas) | `backend/tests/test_turno_service.py:207` · `backend/tests/test_turnos_api.py:120` |
-| Sillón inactivo → 400 | `test_sillon_inactivo_es_rechazado` · `test_400_sillon_inactivo` | `backend/tests/test_turno_service.py:213` · `backend/tests/test_turnos_api.py:132` |
-| Prestación inactiva → 400 | `test_prestacion_inactiva_es_rechazada` · `test_400_prestacion_inactiva` | `backend/tests/test_turno_service.py:218` · `backend/tests/test_turnos_api.py:144` |
+| Profesional inactivo → 400 | `test_profesional_inactivo_es_rechazado` · `test_400_profesional_inactivo` (HTTP 400 + 0 filas) | `backend/tests/test_turno_service.py:207` · `backend/tests/test_turnos_api.py:145` |
+| Sillón inactivo → 400 | `test_sillon_inactivo_es_rechazado` · `test_400_sillon_inactivo` | `backend/tests/test_turno_service.py:213` · `backend/tests/test_turnos_api.py:157` |
+| Prestación inactiva → 400 | `test_prestacion_inactiva_es_rechazada` · `test_400_prestacion_inactiva` | `backend/tests/test_turno_service.py:218` · `backend/tests/test_turnos_api.py:169` |
 | (caso extra del requirement: sillón **inexistente** / FKs inexistentes) | `test_fk_inexistente_es_rechazado` (parametrizado: `profesional_id`, `paciente_id`, `prestacion_id`, `sillon_id` = 9999) · `test_fk_inexistente_no_deja_registros_en_turno` — **solo nivel servicio** | `backend/tests/test_turno_service.py:233` · `backend/tests/test_turno_service.py:249` |
 
 ### Requirement: Los turnos cancelados liberan la agenda
 
 | Escenario | Test(s) | Ruta:línea |
 |---|---|---|
-| Creación sobre un turno cancelado → 201 | `test_turno_cancelado_no_bloquea_la_agenda` · `test_201_creacion_sobre_turno_cancelado` (HTTP 201 + 2 filas) | `backend/tests/test_turno_service.py:187` · `backend/tests/test_turnos_api.py:172` |
+| Creación sobre un turno cancelado → 201 | `test_turno_cancelado_no_bloquea_la_agenda` · `test_201_creacion_sobre_turno_cancelado` (HTTP 201 + 2 filas) | `backend/tests/test_turno_service.py:187` · `backend/tests/test_turnos_api.py:213` |
 
 ### Cobertura de modelos/apoyo usada por la spec
 
@@ -129,32 +141,44 @@ sugeridos.
 | `POST /turnos` acepta exactamente los 5 campos del requirement | `test_turno_create_acepta_exactamente_los_cinco_campos` | `backend/tests/test_schemas.py:23` |
 
 **Resultado honesto del mapeo**: los **13 escenarios / 8 requirements** de la
-spec tienen al menos un test que los ejercita. Ver "huecos" abajo para lo que
-queda cubierto solo parcialmente.
+spec tienen al menos un test que los ejercita, y los 13 cuentan ahora con al
+menos un test **HTTP de punta a punta** (`POST /turnos` con el código de estado
+que fija el escenario). Ver "huecos" abajo para las salvedades que quedan.
 
 ---
 
 ## 3. Huecos y salvedades (sin mentir)
 
-1. **Dos escenarios cubiertos solo a nivel servicio, no a nivel HTTP:**
+1. **Hueco cerrado — los dos escenarios que antes no tenían test HTTP ahora sí
+   lo tienen:**
    - *"Bloqueo de otro profesional no afecta"* (spec: "la respuesta es 201") →
-     solo `backend/tests/test_turno_service.py:148`. No hay test de API que
-     haga `POST /turnos` esperando 201 en ese caso.
+     `test_201_bloqueo_de_otro_profesional_no_afecta`
+     (`backend/tests/test_turnos_api.py:108`): da de alta un segundo profesional
+     (P2) con un bloqueo propio y hace `POST /turnos` del profesional activo
+     (P1) esperando **201**, con exactamente 1 fila persistida.
    - *"Borde rechazado — inicia 1 minuto antes del fin"* (spec: "la respuesta es
-     409") → solo `backend/tests/test_turno_service.py:180`
-     (`pytest.raises(TurnoSolapadoError)`), sin test HTTP que espere 409.
-   - Riesgo residual bajo: el mapeo excepción → HTTP (`TurnoSolapadoError` →
-     409, `TurnoRechazadoError` → 400) sí está cubierto por otros tests de la
-     API, pero **este escenario en particular no lo verifica de punta a punta**.
+     409") → `test_409_borde_inicio_un_minuto_antes_del_fin`
+     (`backend/tests/test_turnos_api.py:197`): hace `POST /turnos` a las 09:00
+     (201) y otro a las 09:29 sobre el mismo sillón esperando **409**, con 1 sola
+     fila. El `detail` real es la colisión por profesional ("Ya existe un turno
+     del mismo profesional en ese horario"), porque el servicio evalúa primero
+     ese motivo cuando coinciden profesional y sillón; el test asevera eso
+     mismo, verificado contra la corrida real (no asumido).
+   - Ambos escenarios conservan además su test de servicio
+     (`test_turno_service.py:148` y `:180`), así que quedan cubiertos en los dos
+     niveles.
 2. **Sin frontend → sin capturas de UI.** El change fue API + servicio por
    decisión de alcance (Opción B, `docs/explore/relevamiento-crear-turno-sin-solapamientos.md`
    §4.2 y bitácora I-04): no hay interfaz que capturar. `docs/evidencias/capturas/`
    queda **pendiente** hasta `C-11` del roadmap.
-3. **Sin mypy todavía**: el type-checker no está adoptado en el repo (no figura
-   en `backend/pyproject.toml` ni en los comandos del `README.md`), así que no
-   hay `mypy-*.txt` que generar. Pendiente.
-4. **La suite tiene 58 tests, no solo los de este change**: incluye health, db,
-   startup, fixture, errores y los modelos/schemas creados por el mismo change.
+3. **mypy adoptado y en verde.** El repo ya configura el type-checker estricto en
+   `backend/pyproject.toml` (`[tool.mypy]` con `strict = true` y el plugin
+   `pydantic.mypy`), y el `README.md` lo incluye en "Cómo regenerar". Corrida
+   real desde `backend\`: `Success: no issues found in 28 source files`
+   (evidencia en [mypy-backend.txt](mypy-backend.txt)).
+4. **La suite tiene 114 tests, no solo los de este change**: incluye health, db,
+   startup, fixture, errores y los modelos/schemas creados por el mismo change,
+   más lo sumado por `C-01` y `C-02`.
    No existe un marker de "tests del change"; el listado §2 es el que delimita
    cuáles responden a la spec.
 5. **Tests extra sin escenario en la spec** (no son huecos, son cobertura de más):
@@ -168,9 +192,10 @@ queda cubierto solo parcialmente.
 
 | Control | Resultado |
 |---|---|
-| `pytest backend\tests -v` | **58 passed, 0 failed, 0 skipped**, 1 warning (del framework), 0.94 s |
+| `pytest backend\tests -v` | **114 passed, 0 failed, 0 skipped**, 1 warning (del framework), 8.91 s |
 | `ruff check backend` | **`All checks passed!`** (exit 0) |
-| `ruff format --check backend` | **`31 files already formatted`** (exit 0) |
-| Trazabilidad spec → tests | 8/8 requirements, 13/13 escenarios con al menos un test (2 de ellos solo a nivel servicio — ver §3) |
+| `ruff format --check backend` | **`53 files already formatted`** (exit 0) |
+| `mypy app` (desde `backend\`) | **`Success: no issues found in 28 source files`** (exit 0) |
+| Trazabilidad spec → tests | 8/8 requirements, 13/13 escenarios con al menos un test **HTTP end-to-end** (además de los tests de servicio) |
 | Tasks del change (`tasks.md`) | 18 de 18 marcadas `[x]`, 0 abiertas (grep de `- [ ]` = 0) |
 | Commits hechos para esta evidencia | **ninguno** (regla dura del repo: solo se commitea con pedido explícito) |

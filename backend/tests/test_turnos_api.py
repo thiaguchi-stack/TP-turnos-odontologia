@@ -105,6 +105,31 @@ def test_409_colision_con_bloqueo_del_profesional(client, datos, db):
     assert len(db.scalars(select(Turno)).all()) == 0
 
 
+def test_201_bloqueo_de_otro_profesional_no_afecta(client, datos, db):
+    otro = Profesional(nombre="Carla", apellido="Méndez", especialidad="Cirugía")
+    db.add(otro)
+    db.commit()
+    db.add(
+        Bloqueo(
+            profesional_id=otro.id,
+            sillon_id=None,
+            fecha_hora_inicio=datetime(2026, 11, 5, 15, 0),
+            fecha_hora_fin=datetime(2026, 11, 5, 19, 0),
+        )
+    )
+    db.commit()
+
+    respuesta = client.post(
+        "/turnos", json=_payload(datos, inicio="2026-11-05T16:00:00")
+    )
+
+    assert respuesta.status_code == 201
+    assert respuesta.json()["estado"] == "reservado"
+
+    db.expire_all()
+    assert len(db.scalars(select(Turno)).all()) == 1
+
+
 def test_400_turno_en_el_pasado(client, datos, db):
     en_el_pasado = (datetime.now() - timedelta(hours=2)).isoformat(timespec="seconds")
 
@@ -167,6 +192,22 @@ def test_201_borde_inicio_igual_al_fin_de_otro_turno(client, datos, db):
 
     db.expire_all()
     assert len(db.scalars(select(Turno)).all()) == 2
+
+
+def test_409_borde_inicio_un_minuto_antes_del_fin(client, datos, db):
+    creada = client.post("/turnos", json=_payload(datos, sillon_id=datos.sillon_1.id))
+    assert creada.status_code == 201
+
+    respuesta = client.post(
+        "/turnos",
+        json=_payload(datos, inicio="2026-11-05T09:29:00", sillon_id=datos.sillon_1.id),
+    )
+
+    assert respuesta.status_code == 409
+    assert "profesional" in respuesta.json()["detail"].lower()
+
+    db.expire_all()
+    assert len(db.scalars(select(Turno)).all()) == 1
 
 
 def test_201_creacion_sobre_turno_cancelado(client, datos, db):

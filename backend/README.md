@@ -101,7 +101,7 @@ Los otros mensajes de `409`: `"El sillón ya está ocupado por otro profesional 
 
 ## Tests y lint (desde `backend/`)
 
-Los comandos asumen el entorno virtual ya creado según el [README de la raíz](../README.md). Los tests corren sobre SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `tests/conftest.py`): no pasan por Alembic ni tocan la base local. Estado actual: **112 tests passing**.
+Los comandos asumen el entorno virtual ya creado según el [README de la raíz](../README.md). Los tests corren sobre SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `tests/conftest.py`): no pasan por Alembic ni tocan la base local. Estado actual: **114 tests passing**.
 
 ### PowerShell
 

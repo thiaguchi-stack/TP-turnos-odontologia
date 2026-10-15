@@ -7,7 +7,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 - ✅ **Fundación**: `knowledge-base/` (dominio completo, 10 archivos + README), `CHANGES.md` (18 changes en 6 fases), `AGENTS.md`/`CLAUDE.md` (reglas duras del proyecto).
 - ✅ **Discovery / investigación de mercado**: 34 sistemas relevados en `discovery/raw/` + verificación de fuentes en `discovery/verificacion-fuentes.md`.
 - ✅ **Primer ciclo OPSX cerrado**: change `crear-turno-sin-solapamientos` (desvío deliberado → `C-07`/`C-08`), implementado y archivado con spec sincronizado.
-- ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **112 tests passing**.
+- ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **114 tests passing**.
 - ✅ **C-02 `core-models` archivado** (2026-10-15): 8 tablas (incluye `usuario`, `sillon` y `horario_atencion`), mixin de auditoría, unicidades/índices de agenda, seed mínimo idempotente con datos ficticios y esquema versionado con Alembic (`001_baseline`); spec `modelo-datos` sincronizada (9 requirements).
 - ✅ **Fundación C-01**: `c-01-foundation-setup` implementado y archivado (CORS configurable, stub `core/security.py`, `.env.example` y scaffold `frontend/` Vite + React 18 + TS con build verificado).
 - 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-03 → C-04 → …` (ver `CHANGES.md`).
@@ -30,7 +30,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 | Change archivado `c-01-foundation-setup` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-15-c-01-foundation-setup/`](openspec/changes/archive/2026-10-15-c-01-foundation-setup/) | ✅ archivado |
 | Change archivado `c-02-core-models` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-15-c-02-core-models/`](openspec/changes/archive/2026-10-15-c-02-core-models/) | ✅ archivado |
 | Backend (implementación) | [`backend/app/`](backend/app/) → detalle en [`backend/README.md`](backend/README.md) | ✅ |
-| Tests | [`backend/tests/`](backend/tests/) | ✅ 112 passing |
+| Tests | [`backend/tests/`](backend/tests/) | ✅ 114 passing |
 | Evidencias (verify + trazabilidad, pytest/ruff, explore, skills) | [`docs/evidencias/`](docs/evidencias/) | ✅ |
 | Reflexión final | [`docs/reflexion.pdf`](docs/reflexion.pdf) (+ [`docs/reflexion.md`](docs/reflexion.md)) | ✅ |
 | Frontend (React + Vite) | [`frontend/`](frontend/) (scaffold C-01: Vite + React 18 + TS) | ✅ scaffold |
@@ -75,7 +75,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 │   ├── app/                     API FastAPI (core, db, models, schemas, services, routers)
 │   ├── alembic/                 Migraciones versionadas del esquema (001_baseline)
 │   ├── alembic.ini
-│   ├── tests/                   Suite pytest (112 tests)
+│   ├── tests/                   Suite pytest (114 tests)
 │   └── pyproject.toml
 ├── frontend/
 │   ├── src/                     SPA React (pages, components, services, shared)
@@ -177,7 +177,7 @@ Si tenías un `clinica.db` viejo creado por `create_all`, borralo (o `alembic st
 Notas:
 
 - El extra `[dev]` (definido en `backend/pyproject.toml`) instala **ruff**; pytest, httpx y **alembic** ya vienen en las dependencias base.
-- Los tests usan SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `backend/tests/conftest.py`); no tocan la base local ni pasan por Alembic. Estado actual: **112 tests passing**.
+- Los tests usan SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `backend/tests/conftest.py`); no tocan la base local ni pasan por Alembic. Estado actual: **114 tests passing**.
 - El frontend usa **TypeScript estricto** (`frontend/tsconfig.json`) y no admite `any`. Las rutas privadas y el interceptor JWT llegan en `C-03`/`C-19`; el `services/api.ts` actual es el wrapper base.
 - Copiá `backend/.env.example` a `backend/.env` y `frontend/.env.example` a `frontend/.env` para configurar el entorno local.
 - Para la estructura por capas del backend y un ejemplo de uso de la API, ver [`backend/README.md`](backend/README.md).
