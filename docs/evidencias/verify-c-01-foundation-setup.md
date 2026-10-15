@@ -1,6 +1,6 @@
 # Verify — `c-01-foundation-setup`
 
-Verificación del change archivado en `openspec/changes/archive/2026-10-15-c-01-foundation-setup/`, contra la spec vigente `openspec/specs/foundation-setup/spec.md` (7 requirements, 8 escenarios).
+Verificación del change archivado en `openspec/changes/archive/2026-10-15-c-01-foundation-setup/`, contra la spec vigente `openspec/specs/foundation-setup/spec.md` (8 requirements, 8 escenarios).
 
 No existe un comando propio de verify en OPSX: la verificación se hizo corriendo la suite y el lint del repo, mapeando cada requirement/escenario contra los tests existentes (`backend/tests/test_foundation.py`) y contra los archivos implementados (backend/frontend). Todo en español rioplatense.
 
@@ -106,6 +106,6 @@ Fuente: [openspec/specs/foundation-setup/spec.md](../../openspec/specs/foundatio
 | `pytest backend\tests -v` | **112 passed, 0 failed, 0 skipped**, 1 warning (framework). |
 | `ruff check backend` | **`All checks passed!`** (exit 0). |
 | `ruff format --check backend` | **53 files already formatted** (exit 0; se aplicó `ruff format` a los 5 heredados durante esta evidencia). |
-| Trazabilidad spec → implementación/tests | **7/7 requirements, 8/8 escenarios** verificados (estructura, security, CORS, .env, scaffold, proxy/api, docs). |
-| Tasks del change (`tasks.md`) | **31/31** marcadas `[x]`, 0 abiertas. |
+| Trazabilidad spec → implementación/tests | **8/8 requirements, 8/8 escenarios** verificados (estructura monorepo, security stub, CORS configurable, `.env.example` backend y frontend, scaffold frontend, proxy/api, scripts documentados). |
+| Tasks del change (`tasks.md`) | **14/14** marcadas `[x]`, 0 abiertas. |
 | Commits de esta evidencia | **ninguno durante la corrida**; el formateo y esta evidencia se commitean junto con el pedido de sincronización del usuario. |
