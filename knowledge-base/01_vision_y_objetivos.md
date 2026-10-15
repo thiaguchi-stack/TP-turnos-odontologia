@@ -22,7 +22,7 @@ Contexto: hoy la coordinación de turnos odontológicos se hace por teléfono/Wh
 - Gestión de profesionales, prestaciones (con duración configurable) y bloqueos de agenda.
 - Confirmación de turnos reservados.
 - Estados de turno: reservado → confirmado → completado (y cancelado).
-- Prevención de solapamientos por profesional.
+- Prevención de solapamientos por profesional y por sillón/box (RN-TU-01).
 - Datos simulados (seed) para la entrega del TP.
 
 ## Fuera de alcance
@@ -38,5 +38,5 @@ Contexto: hoy la coordinación de turnos odontológicos se hace por teléfono/Wh
 
 - % de turnos reservados online vs. telefónicos (incremento de adopción).
 - Tiempo medio de reserva < 2 minutos.
-- Cero solapamientos de turnos por profesional.
+- Cero solapamientos de turnos por profesional y por sillón/box.
 - Reducción de ausencias percibida por el consultorio (a medir cuando existan recordatorios).
