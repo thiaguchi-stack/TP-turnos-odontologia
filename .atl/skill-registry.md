@@ -8,13 +8,14 @@ See `_shared/skill-resolver.md` for the full resolution protocol.
 
 | Trigger | Skill | Path |
 |---------|-------|------|
-| /active-orchestrator:init, :kb, :rules, :discovery, :openspec, :devops, :find-skill, :registry — start a new project with the SDD/OpenSpec foundation flow | active-orchestrator | C:\Users\Usuario\.config\opencode\skills\active-orchestrator\SKILL.md |
-| descubrir/explorar el problema y el mercado antes de armar la KB; orquestado por active-orchestrator (fase discovery) | discovery-research | C:\Users\Usuario\.config\opencode\skills\discovery-research\SKILL.md |
-| crear/base/generar KB, "armar base de conocimiento", "documentar proyecto"; desde docs o desde cero | kb-creator | C:\Users\Usuario\.config\opencode\skills\kb-creator\SKILL.md |
-| armar CHANGES.md / roadmap / mapa de changes / plan de implementación / índice de changes | roadmap-generator | C:\Users\Usuario\.config\opencode\skills\roadmap-generator\SKILL.md |
-| "find a skill for X", "is there a skill for X", "how do I do X" (extender capacidades con skills del ecosistema) | find-skills | C:\Users\Usuario\.config\opencode\skills\find-skill\SKILL.md |
-| crear/generar/actualizar AGENTS.md o CLAUDE.md, "armar las reglas del proyecto", "instrucciones para los agentes" | agents-md-generator | C:\Users\Usuario\.config\opencode\skills\agent-instruction\SKILL.md |
-| investigar/scrapear un competidor a partir de una URL (nota markdown de esquema fijo) — sub-skill de discovery-research | web-scraper | C:\Users\Usuario\.config\opencode\skills\web-scraper\SKILL.md |
+| /active-orchestrator:init, :kb, :rules, :discovery, :openspec, :devops, :find-skill, :registry — start a new project with the SDD/OpenSpec foundation flow | active-orchestrator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\active-orchestrator\SKILL.md |
+| descubrir/explorar el problema y el mercado antes de armar la KB; orquestado por active-orchestrator (fase discovery) | discovery-research | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\discovery-research\SKILL.md |
+| crear/base/generar KB, "armar base de conocimiento", "documentar proyecto"; desde docs o desde cero | kb-creator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\kb-creator\SKILL.md |
+| armar CHANGES.md / roadmap / mapa de changes / plan de implementación / índice de changes | roadmap-generator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\roadmap-generator\SKILL.md |
+| "find a skill for X", "is there a skill for X", "how do I do X" (extender capacidades con skills del ecosistema) | find-skills | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\find-skill\SKILL.md |
+| crear/generar/actualizar AGENTS.md o CLAUDE.md, "armar las reglas del proyecto", "instrucciones para los agentes" | agents-md-generator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\agent-instruction\SKILL.md |
+| investigar/scrapear un competidor a partir de una URL (nota markdown de esquema fijo) — sub-skill de discovery-research | web-scraper | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\web-scraper\SKILL.md |
+| crear una skill desde cero, editar/mejorar una skill existente, correr evals/benchmarks o optimizar el trigger de una skill | skill-creator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\skill-creator\SKILL.md |
 | openspec explore / opsx explore — pensar un problema antes o durante un change | openspec-explore | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-explore\SKILL.md |
 | openspec propose / opsx propose — proponer un change con todos los artifacts | openspec-propose | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-propose\SKILL.md |
 | openspec apply / opsx apply / openspec implement — implementar los tasks de un change | openspec-apply-change | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-apply-change\SKILL.md |
@@ -34,7 +35,8 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Resume: si state existe con `step != "done"`, preguntar continuar o desde cero.
 - Checkpoint en cada frontera de fase: nunca avanzar `step` sin "Continuar" explícito del usuario; nunca correr fases back-to-back.
 - Orden de fases (§4.2): openspec init → [discovery-research opcional] → kb-creator → roadmap-generator → find-skill → skill-registry → agent-instruction.
-- NUNCA instalar skills autónomamente; find-skill solo recomienda, el usuario decide (install gate).
+- NUNCA instalar skills autónomamente; find-skill solo recomienda, el usuario decide (install gate). Instalación SOLO a project scope (`.agents/skills/`, sin `-g`) — escribe archivos que se commitean (HIGH governance).
+- Lazy-load check: `npx skills list | grep <skill>` (scope de proyecto).
 - Standalone commands (`/active-orchestrator:kb`, `:rules`, etc.) corren UNA fase y paran — sin gate de avance.
 - Voseo rioplatense cuando el usuario habla español.
 
@@ -68,14 +70,14 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Buscar skills del ecosistema (`npx skills find`, browse en skills.sh); líderboard primero para skills conocidas.
 - Verificar calidad antes de recomendar: install count (preferir 1K+, cautela <100), reputación de la fuente (vercel-labs, anthropics, microsoft), stars del repo (<100 → escepticismo).
 - Modo recomendar: presentar nombre, qué hace, install count, fuente, comando `npx skills add <owner/repo@skill>`.
-- Instalar solo con permiso explícito: `npx skills add <owner/repo@skill> -g -y`; `-g` = user-level global.
+- Instalar solo con permiso explícito y a project scope: `npx skills add <owner/repo@skill> -y` — SIN `-g` (cae en `.agents/skills/` del proyecto; por convención del proyecto las skills viven en el repo, nunca a user level).
 - Si no hay skill relevante: ofrecer hacerlo manualmente o `npx skills init`.
 
 ### agents-md-generator
 - Pre-checks: knowledge-base/ + 02_descripcion_general.md existen; sin CHANGES.md generar igual omitiendo sección Roadmap y avisando.
 - Salida: `AGENTS.md` Y `CLAUDE.md` en la raíz, contenido idéntico (copia, no referencia).
 - Leer el global `~/.claude/CLAUDE.md` para NO repetir sus reglas universales; referenciarlo con una línea, escribir solo reglas específicas del proyecto + universales ausentes del global.
-- Skills: leer `.atl/skill-registry.md` como fuente de verdad (no re-escaneo) y mapear skill→rol con tabla; NO copiar compact rules (DRY: viven solo en el registry).
+- Skills: leer `.atl/skill-registry.md` como fuente de verdad (no re-escaneo) y mapear skill→rol con tabla; NO copiar compact rules (DRY: viven solo en el registry). Fallback si no existe: escanear `.agents/skills/` + `.claude/skills/` + `~/.claude/skills/`.
 - Reglas duras: stack-aware (PascalCase/anys/tsconfig para React, snake_case/type hints para Python, etc.), NUNCA hardcodeadas.
 - Única parte interactiva = confirmar reglas duras con el usuario (AskUserQuestion) → escribir solo lo confirmado.
 - Secciones contrato: Stack | Base de Conocimiento | Skills Disponibles | Roadmap | Reglas Duras | Flujo de Trabajo (KB → CHANGES → /opsx:propose → archive).
@@ -87,6 +89,15 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - No crawling ni scraping masivo: solo páginas puntuales explícitamente pasadas (JS pesado/anti-bot = fuera de v1).
 - Escribir `discovery/sources/<slug>.md` (slug via `scripts/slugify.py`; repetir el mismo competidor pisa el mismo archivo).
 - Procesar URLs una por una; reportar cuántas resolvieron/fallaron sin abortar el lote por una URL caída.
+
+### skill-creator
+- Loop: capturar intención → entrevista/borrador → test prompts → runs → evaluar → iterar; ubicar en qué etapa está el usuario y arrancar desde ahí (si dice "no evalúes, andá a lo simple", respetar).
+- Frontmatter `name` + `description` obligatorios; la description es el mecanismo de trigger: decir QUÉ hace Y CUÁNDO usarla, un poco "pushy" (combate el undertrigger).
+- Progressive disclosure: SKILL.md <500 líneas ideal; capas extra en archivos referenciados con indicación de cuándo leerlos; TOC en referencias >300 líneas; organizar por dominio en `references/`.
+- Estilo: forma imperativa, explicar el porqué en lugar de MUSTs pesados; definir plantillas de salida exactas y ejemplos Input/Output.
+- Test cases: 2-3 prompts realistas en `evals/evals.json` (solo prompts al inicio), confirmarlos con el usuario; spawnear TODOS los runs (with-skill Y baseline) en el mismo turno y redactar asserts mientras corren.
+- Prohibido malware/exploits ni skills engañosas o de acceso no autorizado (principle of lack of surprise).
+- Optimización de description al final (evals de triggers + loop) solo cuando la skill está estable; aplicar el resultado y re-testear.
 
 ### openspec-explore
 - Modo pensar, NO implementar: read-only sin confirmación; nunca escribir código ni features.
@@ -145,6 +156,18 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 
 | File | Path | Notes |
 |------|------|-------|
-| (ninguno) | — | Primera pasada de fundación: aún no existen AGENTS.md/CLAUDE.md (los genera agent-instruction). KB: `knowledge-base/*.md` (11 archivos) y `CHANGES.md` (18 changes C-01..C-18) existen como insumo, pero no son convention files. |
+| AGENTS.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\AGENTS.md | Index — references files below (Stack, KB, Skills, Roadmap, Reglas Duras, Flujo de Trabajo) |
+| CLAUDE.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\CLAUDE.md | Copia idéntica de AGENTS.md (hash igual) — también indexa los archivos de abajo |
+| CHANGES.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\CHANGES.md | Referenced by AGENTS.md/CLAUDE.md — roadmap de 18 changes |
+| knowledge-base/01_vision_y_objetivos.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\01_vision_y_objetivos.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/02_descripcion_general.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\02_descripcion_general.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/03_actores_y_roles.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\03_actores_y_roles.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/04_modelo_de_datos.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\04_modelo_de_datos.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/05_reglas_de_negocio.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\05_reglas_de_negocio.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/06_funcionalidades.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\06_funcionalidades.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/07_flujos_principales.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\07_flujos_principales.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/08_arquitectura_propuesta.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\08_arquitectura_propuesta.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/09_decisiones_y_supuestos.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\09_decisiones_y_supuestos.md | Referenced by AGENTS.md/CLAUDE.md |
+| knowledge-base/10_preguntas_abiertas.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\10_preguntas_abiertas.md | Referenced by AGENTS.md/CLAUDE.md |
 
 Read the convention files listed above for project-specific patterns and rules. All referenced paths have been extracted — no need to read index files to discover more.
