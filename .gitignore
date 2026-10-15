@@ -25,6 +25,11 @@ venv/
 .idea/
 .DS_Store
 
+# Frontend (Node)
+node_modules/
+dist/
+.vite/
+
 # Documentos de trabajo temporales
 *.tmp
 *.log
