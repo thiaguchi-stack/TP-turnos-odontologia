@@ -165,7 +165,7 @@
 
 ### 3.3 Notas de integridad del repo
 
-- Los raw referencian notas internas `discovery/sources/{doctoralia-argentina,dental-total,tm-dental}.md` que **no existen** en el repositorio (verificado por `glob`). Si se citan como "nota interna", o bien se crean o bien se elimina la referencia.
+- Los raw referencian notas internas `discovery/sources/{doctoralia-argentina,dental-total,tm-dental}.md`, que **existen** en el repositorio (verificadas el **2026-10-15**).
 - Marcas desambiguadas y confirmadas: **DentalSoft (AR)** / **DentalSoft.es** / **Dentisoft (US)** / **DentiSoft (PE)** — 4 productos distintos que comparten nombre (raw internacional sección 11b). Se verificaron los 4 dominios: `dentalsoft.com.ar`, `dentalsoft.es`, `dentisoft.com`, `dentisoftperu.com` (todos 200).
 
 ---

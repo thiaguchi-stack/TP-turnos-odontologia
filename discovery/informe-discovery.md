@@ -262,7 +262,7 @@ Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en 
   - **C-05** — tab32: "odontograma/periodontograma No evidenciado" → **Comprobado** (el charting incluye odontograma y perio).
   - **C-06** — tab32: el raw no detallaba AutoRemind → la página vigente indica **"AutoRemind — Included Year 1, 500 mensajes/mes, luego USD 69/mes, overage USD 0,08/msg"**.
   - **C-07** — `pro.doctoralia.com/ar` responde **200 con `www`**; la URL original es válida (sin cambio de contenido).
-- **Notas de integridad del repo:** los raw citan notas internas `discovery/sources/{doctoralia-argentina,dental-total,tm-dental}.md` que **no existen** en el repositorio (referencias a limpiar o crear). Se desambiguaron y verificaron 4 marcas "DentalSoft/Dentisoft" distintas (AR, España, EE.UU., Perú), todas con dominio propio.
+- **Notas de integridad del repo:** los raw citan notas internas `discovery/sources/{doctoralia-argentina,dental-total,tm-dental}.md`, que **existen** en el repositorio (verificadas el **2026-10-15**). Se desambiguaron y verificaron 4 marcas "DentalSoft/Dentisoft" distintas (AR, España, EE.UU., Perú), todas con dominio propio.
 
 ---
 
