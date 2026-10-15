@@ -84,4 +84,3 @@ def test_profesional_id_inexistente_rechazado_por_fk():
         db.add(usuario)
         with pytest.raises(IntegrityError):
             db.commit()
-

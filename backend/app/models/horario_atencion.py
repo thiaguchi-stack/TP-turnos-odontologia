@@ -26,6 +26,8 @@ class HorarioAtencion(Base):
     profesional_id: Mapped[int] = mapped_column(
         ForeignKey("profesional.id"), nullable=False
     )
-    dia_semana: Mapped[int] = mapped_column(Integer, nullable=False)  # ISO 0–6 (lunes=0)  # noqa: E501
+    dia_semana: Mapped[int] = mapped_column(
+        Integer, nullable=False
+    )  # ISO 0–6 (lunes=0)  # noqa: E501
     hora_inicio: Mapped[time] = mapped_column(Time, nullable=False)
     hora_fin: Mapped[time] = mapped_column(Time, nullable=False)

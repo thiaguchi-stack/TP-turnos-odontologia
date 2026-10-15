@@ -57,4 +57,3 @@ class Turno(MixinAuditoria, Base):
     )
     cancelado_en: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     motivo_cancelacion: Mapped[str | None] = mapped_column(Text, nullable=True)
-

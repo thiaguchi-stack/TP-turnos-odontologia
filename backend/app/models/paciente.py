@@ -17,4 +17,3 @@ class Paciente(MixinAuditoria, Base):
     telefono: Mapped[str] = mapped_column(String(30))
     email: Mapped[str | None] = mapped_column(String(120))
     obsocial: Mapped[str | None] = mapped_column(String(100))
-

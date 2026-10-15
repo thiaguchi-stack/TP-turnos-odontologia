@@ -35,9 +35,7 @@ def test_esquema_migrado_coincide_con_metadata(tmp_path: Path):
         for nombre in sorted(tablas_metadata):
             tabla_metadata = Base.metadata.tables[nombre]
             columnas_metadata = {col.name for col in tabla_metadata.columns}
-            columnas_migradas = {
-                col["name"] for col in inspector.get_columns(nombre)
-            }
+            columnas_migradas = {col["name"] for col in inspector.get_columns(nombre)}
             assert columnas_metadata == columnas_migradas
 
             indices_metadata = {

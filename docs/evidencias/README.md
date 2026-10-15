@@ -21,6 +21,10 @@ Rutas relativas a la raíz del repo. Todo en español rioplatense.
 | [mypy-backend.txt](mypy-backend.txt) | Salida de `mypy app` (`strict = true`, plugin de pydantic) desde `backend/`. | ✅ |
 | [explore-crear-turno-sin-solapamientos.md](explore-crear-turno-sin-solapamientos.md) | Resumen de la exploración previa al change (OPSX Explore), citando sus fuentes. | ✅ |
 | [skills.md](skills.md) | Skills instaladas en el repo y en qué etapa del flujo se usó cada una. | ✅ |
+| [verify-c-01-foundation-setup.md](verify-c-01-foundation-setup.md) | Verificación del change archivado `c-01-foundation-setup`: trazabilidad spec → implementación/tests (CORS, security stub, .env, scaffold frontend). | ✅ |
+| [verify-c-02-core-models.md](verify-c-02-core-models.md) | Verificación del change archivado `c-02-core-models`: trazabilidad spec → tests (9 requirements, modelos, enums, auditoría, horarios, seed, migraciones). | ✅ |
+| [pytest-c-01-c-02-modelos.txt](pytest-c-01-c-02-modelos.txt) | Salida completa `pytest -v` ejecutada para validar C-01 y C-02 (112 tests). | ✅ |
+| [ruff-c-01-c-02-modelos.txt](ruff-c-01-c-02-modelos.txt) | Salida de `ruff check backend` + `ruff format --check backend` (C-01+C-02). | ✅ |
 
 ## Pendientes (no inventados, no creados)
 
@@ -34,8 +38,6 @@ Rutas relativas a la raíz del repo. Todo en español rioplatense.
   completa quedó en `mypy-backend.txt`.
 - **Cambios futuros**: cada change que se archive sumará su trío
   `verify-<change>.md` + `pytest-<change>.txt` + `ruff-<change>.txt`.
-  (`c-01-foundation-setup` y `c-02-core-models` están archivados; su trío de
-  evidencia aún no se generó.)
 
 ## Cómo regenerar la evidencia
 
