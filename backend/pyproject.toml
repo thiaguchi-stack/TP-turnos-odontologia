@@ -13,11 +13,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["ruff>=0.4"]
+dev = ["ruff>=0.4", "mypy>=1.10"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
 
 [tool.ruff]
 line-length = 88
