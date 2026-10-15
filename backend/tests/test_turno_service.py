@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
 import pytest
 
@@ -202,6 +203,37 @@ def test_turno_cancelado_no_bloquea_la_agenda(db, datos):
 def test_turno_en_el_pasado_es_rechazado(db, datos):
     error = _rechazo(db, datos, inicio=datetime.now() - timedelta(hours=1))
     assert "pasado" in error.motivo.lower()
+
+
+# RN-TU-06 — interpretación: "pasado" se juzga al momento de INICIAR
+# (spec «Sin turnos en el pasado»: fecha_hora_inicio anterior a ahora)
+
+
+def test_turno_en_curso_inicio_en_pasado_y_fin_en_futuro_es_rechazado(db, datos):
+    ahora = datetime(2030, 6, 1, 12, 0)
+    with patch("app.core.clock.now", return_value=ahora):
+        error = _rechazo(db, datos, inicio=datetime(2030, 6, 1, 11, 40))
+
+    # inicio 11:40 < ahora, pero el fin derivado (12:10) aún no pasó
+    assert "pasado" in error.motivo.lower()
+
+
+def test_turno_con_fin_ya_pasado_es_rechazado(db, datos):
+    ahora = datetime(2030, 6, 1, 12, 0)
+    with patch("app.core.clock.now", return_value=ahora):
+        error = _rechazo(db, datos, inicio=datetime(2030, 6, 1, 11, 0))
+
+    # inicio 11:00 y fin derivado 11:30 < ahora: ambas lecturas coinciden
+    assert "pasado" in error.motivo.lower()
+
+
+def test_inicio_exactamente_igual_al_ahora_es_aceptado(db, datos):
+    ahora = datetime(2030, 6, 1, 12, 0)
+    with patch("app.core.clock.now", return_value=ahora):
+        turno = _crear(db, datos, inicio=ahora)
+
+    assert turno.id is not None
+    assert turno.estado == "reservado"
 
 
 def test_profesional_inactivo_es_rechazado(db, datos):

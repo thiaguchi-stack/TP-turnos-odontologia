@@ -3,6 +3,7 @@ from datetime import datetime
 from sqlalchemy import DateTime, Enum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
+from app.core import clock
 from app.db.base import Base
 
 ESTADOS_TURNO = ("reservado", "confirmado", "cancelado", "completado")
@@ -35,6 +36,6 @@ class Turno(Base):
     token_cancelacion: Mapped[str | None] = mapped_column(
         String(64), unique=True, nullable=True
     )
-    creado_en: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+    creado_en: Mapped[datetime] = mapped_column(DateTime, default=lambda: clock.now())
     cancelado_en: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     motivo_cancelacion: Mapped[str | None] = mapped_column(Text, nullable=True)
