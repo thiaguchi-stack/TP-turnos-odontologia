@@ -23,7 +23,7 @@
 
 ## Vacíos del research de mercado (oportunidades pendientes)
 
-Fuente: `docs/discovery/raw/argentina.md`, `docs/discovery/raw/latam.md` e `docs/discovery/raw/internacional.md` (investigación del 2026-10-09; campos marcados **"No evidenciado"** = sin respaldo público verificable).
+Fuente: `discovery/raw/argentina.md`, `discovery/raw/latam.md` e `discovery/raw/internacional.md` (investigación del 2026-10-09; campos marcados **"No evidenciado"** = sin respaldo público verificable).
 
 | ID | Oportunidad / vacío detectado | Origen | Destino |
 |----|-------------------------------|--------|---------|

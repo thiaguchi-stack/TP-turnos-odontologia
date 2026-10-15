@@ -4,7 +4,7 @@
 **Integrante:** Thiago Oviedo
 **Tipo de trabajo:** Trabajo Práctico individual
 **Fecha del informe:** 2026-10-11
-**Fuentes de investigación:** `docs/discovery/raw/{argentina,latam,internacional}.md` y `docs/discovery/verificacion-fuentes.md` (consultas el 2026-10-09)
+**Fuentes de investigación:** `discovery/raw/{argentina,latam,internacional}.md` y `discovery/verificacion-fuentes.md` (consultas el 2026-10-09)
 
 ---
 
@@ -100,7 +100,7 @@ Estos sistemas aparecieron en las búsquedas con evidencia pública suficiente, 
 
 ## 3. Sección B — Matriz de puntuación
 
-Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en la nota metodológica). Las notas **0–5** por celda provienen de la evidencia registrada en los raw (`docs/discovery/raw/`); el **total ponderado** es la suma de `nota × peso`.
+Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en la nota metodológica). Las notas **0–5** por celda provienen de la evidencia registrada en los raw (`discovery/raw/`); el **total ponderado** es la suma de `nota × peso`.
 
 ### Pesos de los criterios (exactos)
 
@@ -150,7 +150,7 @@ Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en 
   - **4** = funcionalidad evidenciada con claridad en sitio/documentación oficial.
   - **5** = funcionalidad **comprobada en fuente pública** (producto, documentación o video oficial) con el mayor nivel de respaldo del relevamiento.
 - **Tratamiento de los "No evidenciado".** Se computan como **0** y **afectan la nota negativamente**, de forma consistente en toda la matriz. No se aplica un criterio "neutral" a celdas sin evidencia: la ausencia de respaldo público se penaliza, porque el objetivo del ejercicio es discriminar lo **demostrado** de lo **declarado**.
-- **Origen de las notas.** Todas las notas provienen de los puntajes ya asignados por criterio en `docs/discovery/raw/{argentina,latam,internacional}.md`; este informe solo los ordena, los pondera y los agrega. El total ponderado se calcula como `Σ (nota × peso)` con los pesos exactos de la tabla anterior.
+- **Origen de las notas.** Todas las notas provienen de los puntajes ya asignados por criterio en `discovery/raw/{argentina,latam,internacional}.md`; este informe solo los ordena, los pondera y los agrega. El total ponderado se calcula como `Σ (nota × peso)` con los pesos exactos de la tabla anterior.
 
 ---
 
@@ -238,7 +238,7 @@ Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en 
 
 ## 6. Verificación de fuentes
 
-**Método (resumen de `docs/discovery/verificacion-fuentes.md`):** se re-verificaron **55 URLs** mediante `Invoke-WebRequest` (status HTTP + `<title>`) y/o `webfetch`, con confirmación por búsqueda secundaria cuando hubo bloqueo anti-bot. Veredictos: ✅ Comprobado (HTTP 200 + título coherente), ⚠️ Corregir (URL muerta/cambiada o dato desactualizado) y 🔒 Bloqueo anti-bot (producto real confirmado por otra vía). Resultado global: **46 comprobadas**, **4 bloqueos anti-bot**, **4 URLs a corregir** y **0 productos inventados**.
+**Método (resumen de `discovery/verificacion-fuentes.md`):** se re-verificaron **55 URLs** mediante `Invoke-WebRequest` (status HTTP + `<title>`) y/o `webfetch`, con confirmación por búsqueda secundaria cuando hubo bloqueo anti-bot. Veredictos: ✅ Comprobado (HTTP 200 + título coherente), ⚠️ Corregir (URL muerta/cambiada o dato desactualizado) y 🔒 Bloqueo anti-bot (producto real confirmado por otra vía). Resultado global: **46 comprobadas**, **4 bloqueos anti-bot**, **4 URLs a corregir** y **0 productos inventados**.
 
 **Verificación a fondo de 6 fuentes (una por tipo):**
 
@@ -270,7 +270,7 @@ Se puntúan los **20 sistemas más relevantes para Argentina** (ver criterio en 
 
 Todas las URLs listadas fueron consultadas el **2026-10-09** (salvo aclaración). Agrupadas por región de origen del relevamiento.
 
-### 7.1 Argentina (`docs/discovery/raw/argentina.md`)
+### 7.1 Argentina (`discovery/raw/argentina.md`)
 
 - Doctoralia (pacientes): https://www.doctoraliar.com/ — 2026-10-09
 - Doctoralia PRO (precios): https://pro.doctoralia.com/ar/precio — 2026-10-09
@@ -292,7 +292,7 @@ Todas las URLs listadas fueron consultadas el **2026-10-09** (salvo aclaración)
 - Nimbo (AR): https://www.nimbo-x.com/ar · https://www.nimbo-x.com/ar/precios — 2026-10-09
 - TurnosWeb (descartado): https://turnosweb.com/ — 2026-10-09
 
-### 7.2 Latinoamérica (`docs/discovery/raw/latam.md`)
+### 7.2 Latinoamérica (`discovery/raw/latam.md`)
 
 - Dentalink (planes): https://www.softwaredentalink.com/cl/planes · https://www.softwaredentalink.com/experiencia-de-pacientes/agenda — 2026-10-09
 - Clinicorp: https://www.clinicorp.com/ · https://www.clinicorp.com/planos — 2026-10-09
@@ -304,7 +304,7 @@ Todas las URLs listadas fueron consultadas el **2026-10-09** (salvo aclaración)
 - Clinicloud: https://www.clinicloud.cl/ — 2026-10-09
 - Otros referentes (ampliación): https://clinicq.cloud/ · https://www.mrdentalcloud.com/ · https://www.denty.cloud/ · https://dentalware.cl/precios/ · https://odontocloude.com/ · https://xdentalcloud.com/precios/ · https://www.quieroagendar.cl/aprende/alternativa-a-dentalink — 2026-10-09
 
-### 7.3 Internacional (`docs/discovery/raw/internacional.md`)
+### 7.3 Internacional (`discovery/raw/internacional.md`)
 
 - Dentally: https://www.dentally.com/en-gb/pricing · https://www.dentally.com/en-gb/resources/faqs — 2026-10-09
 - Open Dental: https://opendental.com/site/fees.html · https://www.opendental.com/site/websched.html · https://opendental.com/site/ereminders.html — 2026-10-09
@@ -322,8 +322,8 @@ Todas las URLs listadas fueron consultadas el **2026-10-09** (salvo aclaración)
 
 ### 7.4 Documentos internos citados
 
-- `docs/discovery/raw/argentina.md` · `docs/discovery/raw/latam.md` · `docs/discovery/raw/internacional.md` — research de mercado (2026-10-09)
-- `docs/discovery/verificacion-fuentes.md` — verificación de 55 URLs y registro de correcciones (2026-10-09)
+- `discovery/raw/argentina.md` · `discovery/raw/latam.md` · `discovery/raw/internacional.md` — research de mercado (2026-10-09)
+- `discovery/verificacion-fuentes.md` — verificación de 55 URLs y registro de correcciones (2026-10-09)
 - `docs/explore/relevamiento-crear-turno-sin-solapamientos.md` — relevamiento previo del change núcleo (2026-10-10)
 - `knowledge-base/01_vision_y_objetivos.md`, `knowledge-base/04_modelo_de_datos.md`, `knowledge-base/05_reglas_de_negocio.md`, `knowledge-base/06_funcionalidades.md`, `knowledge-base/09_decisiones_y_supuestos.md`, `knowledge-base/10_preguntas_abiertas.md` y `CHANGES.md`
 

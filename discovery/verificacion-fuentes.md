@@ -1,6 +1,6 @@
 # Verificación de fuentes — Estudio de mercado (turnos odontológicos)
 
-> **Propósito:** verificar que las URLs consignadas en `docs/discovery/raw/{argentina,latam,internacional}.md` existen y corresponden al producto descripto, como respaldo de evidencia del TP (consigna: mínimo 5 fuentes de tipos distintos verificadas a fondo).
+> **Propósito:** verificar que las URLs consignadas en `discovery/raw/{argentina,latam,internacional}.md` existen y corresponden al producto descripto, como respaldo de evidencia del TP (consigna: mínimo 5 fuentes de tipos distintos verificadas a fondo).
 > **Fecha de la verificación:** 2026-10-09 (misma fecha de consulta declarada en los raw).
 > **Método:** en cada URL principal/sospechosa → `Invoke-WebRequest` (status + `<title>` de la home) y/o `webfetch`. Ante bloqueo anti-bot (HTTP 403/SSL/timeout) → confirmación por búsqueda web (fuente secundaria) y se marca `bloqueo`, no `inexistente`.
 > **Veredictos:** ✅ **Comprobado** (responde y el título coincide con el producto) · ⚠️ **Corregir** (URL muerta/cambiada o dato del raw desactualizado) · 🔒 **Bloqueo anti-bot** (producto real confirmado por otra vía).

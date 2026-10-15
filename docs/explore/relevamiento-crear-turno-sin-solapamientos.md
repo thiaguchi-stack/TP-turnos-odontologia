@@ -82,7 +82,7 @@ reprogramación (RN-TU-08).
 | Archivos `*.py` o `*.ts`/`*.tsx` fuera de `node_modules` | **ninguno** |
 | `pyproject.toml`, `package.json` raíz, `.env`/`.env.example` | **no existen** |
 | `knowledge-base/` (10 archivos), `CHANGES.md`, `AGENTS.md`, `CLAUDE.md` | completos y vigentes |
-| `docs/discovery/`, `discovery/sources/` | research de mercado completo |
+| `discovery/` | research de mercado completo (raw, informe, checklist, verificación + `sources/`) |
 | `openspec/config.yaml` | inicializado (`schema: spec-driven`), sin `context` ni `rules` cargados |
 | `openspec list --json` | `changes: []`, root válido |
 | `openspec list --specs` | **no hay specs** (`openspec/specs/` solo con `.gitkeep`) |

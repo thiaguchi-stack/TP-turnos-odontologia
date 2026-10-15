@@ -5,7 +5,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 ## Estado del proyecto
 
 - ✅ **Fundación**: `knowledge-base/` (dominio completo, 10 archivos + README), `CHANGES.md` (18 changes en 6 fases), `AGENTS.md`/`CLAUDE.md` (reglas duras del proyecto).
-- ✅ **Discovery / investigación de mercado**: 34 sistemas relevados en `docs/discovery/raw/` + verificación de fuentes en `docs/discovery/verificacion-fuentes.md`.
+- ✅ **Discovery / investigación de mercado**: 34 sistemas relevados en `discovery/raw/` + verificación de fuentes en `discovery/verificacion-fuentes.md`.
 - ✅ **Primer ciclo OPSX cerrado**: change `crear-turno-sin-solapamientos` (desvío deliberado → `C-07`/`C-08`), implementado y archivado con spec sincronizado.
 - 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-01 → C-02 → C-03 → …` (ver `CHANGES.md`).
 

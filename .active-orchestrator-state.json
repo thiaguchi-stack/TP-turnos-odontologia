@@ -5,7 +5,7 @@
   "discovery": {
     "created_by": "discovery-research",
     "status": "completed",
-    "note": "Entregables de la etapa 2 completados el 2026-10-11: informe consolidado (docs/discovery/informe-discovery.md + .pdf), checklist de los 11 puntos (docs/discovery/checklist-discovery-research.md) y bitacora de inspeccion (docs/bitacora-inspeccion.md). El Q&A interactivo original quedo parkeado; el checklist se reconstruyo desde el research de docs/discovery/raw/ con nota de honestidad.",
+    "note": "Entregables de la etapa 2 completados el 2026-10-11: informe consolidado (discovery/informe-discovery.md + .pdf), checklist de los 11 puntos (discovery/checklist-discovery-research.md) y bitacora de inspeccion (docs/bitacora-inspeccion.md). El Q&A interactivo original quedo parkeado; el checklist se reconstruyo desde el research de discovery/raw/ con nota de honestidad.",
     "sources": [
       "https://dentaltotal.com.ar/",
       "https://doctoraliar.com.ar",

@@ -1,6 +1,6 @@
 # Checklist de Discovery — Sistema de gestión de turnos y agenda para consultorios odontológicos (Argentina)
 
-> **Nota metodológica honesta:** el Q&A interactivo de los 11 puntos de `discovery-research` quedó **incompleto** durante la fundación del proyecto (el `.active-orchestrator-state.json` registra `discovery.status = "incomplete"`: "Discovery parkeado por el usuario para avanzar a kb-creator. Q&A de los 11 puntos sin completar"). Este checklist se **reconstruyó a posteriori** a partir de dos fuentes: (1) el **research de mercado escrito** en `docs/discovery/raw/{argentina,latam,internacional}.md` y su verificación (`docs/discovery/verificacion-fuentes.md`); y (2) la **knowledge-base** (`knowledge-base/01..10`), que es la fuente de verdad del dominio. No se realizó una nueva ronda de preguntas al usuario: los puntos que el research no pudo respaldar quedan marcados **"No evidenciado"** en lugar de completarse por deducción.
+> **Nota metodológica honesta:** el Q&A interactivo de los 11 puntos de `discovery-research` quedó **incompleto** durante la fundación del proyecto (el `.active-orchestrator-state.json` registra `discovery.status = "incomplete"`: "Discovery parkeado por el usuario para avanzar a kb-creator. Q&A de los 11 puntos sin completar"). Este checklist se **reconstruyó a posteriori** a partir de dos fuentes: (1) el **research de mercado escrito** en `discovery/raw/{argentina,latam,internacional}.md` y su verificación (`discovery/verificacion-fuentes.md`); y (2) la **knowledge-base** (`knowledge-base/01..10`), que es la fuente de verdad del dominio. No se realizó una nueva ronda de preguntas al usuario: los puntos que el research no pudo respaldar quedan marcados **"No evidenciado"** en lugar de completarse por deducción.
 >
 > **Regla de evidencia:** `(C)` = comprobado en fuente pública · `(A)` = afirmación comercial sin demostración · **No evidenciado** = sin respaldo público verificable. Fecha de consulta de las fuentes de mercado: **2026-10-09**.
 
@@ -49,7 +49,7 @@ Se relevaron **34 sistemas** en profundidad (14 de Argentina + 8 de Latinoaméri
 | **Internacional** | 12 | Dentally, Open Dental, Curve, Dentrix Ascend, CareStack, tab32, Denticon, Eaglesoft, SoftDent, iDentalSoft, Dentisoft, DentalSoft.es | Booking self-service y anti-doble-reserva maduros; WhatsApp casi inexistente (solo iDentalSoft); sin fiscalidad argentina |
 | **LatAm (ampliación)** | 7 | ClinicQ, MR Dental Cloud, Denty.Cloud, Dentalware, OdontoCloude, XDentalCloud, Quiero Agendar | Nuevos entrantes con precio publicado y enfoque dental; ClinicQ con "validación en tiempo real doctor y sillón" |
 
-Listado completo con evidencia por sistema: ver **Sección A del `informe-discovery.md`**. Fuente: `docs/discovery/raw/` y `docs/discovery/verificacion-fuentes.md`.
+Listado completo con evidencia por sistema: ver **Sección A del `informe-discovery.md`**. Fuente: `discovery/raw/` y `discovery/verificacion-fuentes.md`.
 
 ## 5. Funcionalidades necesarias (MVP v1)
 
@@ -140,7 +140,7 @@ Fuente: `knowledge-base/09_decisiones_y_supuestos.md`, `knowledge-base/01_vision
 | Datos de salud mal tratados (Ley 25.326) | Baja | Alto | Privacidad desde el diseño (DD-08, RN-DATOS); consentimiento; seeds ficticios |
 | Autosugestión: "ningún competidor lo tiene" llevado a exceso | Media | Bajo | El informe distingue `(C)` / `(A)` / "No evidenciado"; los vacíos son "no evidenciados", no "inexistentes" |
 
-Fuente: `knowledge-base/10_preguntas_abiertas.md`, `docs/explore/relevamiento-crear-turno-sin-solapamientos.md`, `docs/discovery/verificacion-fuentes.md`.
+Fuente: `knowledge-base/10_preguntas_abiertas.md`, `docs/explore/relevamiento-crear-turno-sin-solapamientos.md`, `discovery/verificacion-fuentes.md`.
 
 ## 11. Preguntas abiertas
 
