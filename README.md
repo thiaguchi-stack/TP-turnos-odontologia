@@ -7,9 +7,10 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 - ✅ **Fundación**: `knowledge-base/` (dominio completo, 10 archivos + README), `CHANGES.md` (18 changes en 6 fases), `AGENTS.md`/`CLAUDE.md` (reglas duras del proyecto).
 - ✅ **Discovery / investigación de mercado**: 34 sistemas relevados en `discovery/raw/` + verificación de fuentes en `discovery/verificacion-fuentes.md`.
 - ✅ **Primer ciclo OPSX cerrado**: change `crear-turno-sin-solapamientos` (desvío deliberado → `C-07`/`C-08`), implementado y archivado con spec sincronizado.
-- ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **72 tests passing**.
+- ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **112 tests passing**.
+- ✅ **C-02 `core-models` archivado** (2026-10-15): 8 tablas (incluye `usuario`, `sillon` y `horario_atencion`), mixin de auditoría, unicidades/índices de agenda, seed mínimo idempotente con datos ficticios y esquema versionado con Alembic (`001_baseline`); spec `modelo-datos` sincronizada (9 requirements).
 - ✅ **Fundación C-01**: `c-01-foundation-setup` implementado y archivado (CORS configurable, stub `core/security.py`, `.env.example` y scaffold `frontend/` Vite + React 18 + TS con build verificado).
-- 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-02 → C-03 → …` (ver `CHANGES.md`).
+- 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-03 → C-04 → …` (ver `CHANGES.md`).
 
 ## Dónde está cada entregable
 
@@ -24,11 +25,12 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 | Knowledge Base (10 archivos) | [`knowledge-base/`](knowledge-base/) (índice en [`knowledge-base/README.md`](knowledge-base/README.md)) | ✅ |
 | Roadmap de changes (18, 6 fases) | [`CHANGES.md`](CHANGES.md) | ✅ |
 | Instrucciones para agentes | [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) | ✅ |
-| Especificaciones OpenSpec vigentes | [`openspec/specs/turnos/`](openspec/specs/turnos/) | ✅ |
+| Especificaciones OpenSpec vigentes | [`openspec/specs/turnos/`](openspec/specs/turnos/), [`openspec/specs/modelo-datos/`](openspec/specs/modelo-datos/) | ✅ |
 | Change archivado `crear-turno-sin-solapamientos` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-10-crear-turno-sin-solapamientos/`](openspec/changes/archive/2026-10-10-crear-turno-sin-solapamientos/) | ✅ archivado |
 | Change archivado `c-01-foundation-setup` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-15-c-01-foundation-setup/`](openspec/changes/archive/2026-10-15-c-01-foundation-setup/) | ✅ archivado |
+| Change archivado `c-02-core-models` (proposal, design, tasks, spec delta) | [`openspec/changes/archive/2026-10-15-c-02-core-models/`](openspec/changes/archive/2026-10-15-c-02-core-models/) | ✅ archivado |
 | Backend (implementación) | [`backend/app/`](backend/app/) → detalle en [`backend/README.md`](backend/README.md) | ✅ |
-| Tests | [`backend/tests/`](backend/tests/) | ✅ 72 passing |
+| Tests | [`backend/tests/`](backend/tests/) | ✅ 112 passing |
 | Evidencias (verify + trazabilidad, pytest/ruff, explore, skills) | [`docs/evidencias/`](docs/evidencias/) | ✅ |
 | Reflexión final | [`docs/reflexion.pdf`](docs/reflexion.pdf) (+ [`docs/reflexion.md`](docs/reflexion.md)) | ✅ |
 | Frontend (React + Vite) | [`frontend/`](frontend/) (scaffold C-01: Vite + React 18 + TS) | ✅ scaffold |
@@ -37,7 +39,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 
 | Capa | Tecnología |
 |------|-----------|
-| Backend | Python 3.11+ · FastAPI · SQLAlchemy 2.x · Pydantic 2.x |
+| Backend | Python 3.11+ · FastAPI · SQLAlchemy 2.x · Pydantic 2.x · Alembic |
 | Base de datos | SQLite (dev, en memoria para tests) / PostgreSQL opcional |
 | Tests | pytest + httpx (`TestClient`) |
 | Lint | Ruff + mypy (backend) · ESLint + Prettier (frontend) |
@@ -71,7 +73,9 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 │       └── archive/2026-10-10-crear-turno-sin-solapamientos/
 ├── backend/
 │   ├── app/                     API FastAPI (core, db, models, schemas, services, routers)
-│   ├── tests/                   Suite pytest (72 tests)
+│   ├── alembic/                 Migraciones versionadas del esquema (001_baseline)
+│   ├── alembic.ini
+│   ├── tests/                   Suite pytest (112 tests)
 │   └── pyproject.toml
 ├── frontend/
 │   ├── src/                     SPA React (pages, components, services, shared)
@@ -156,10 +160,24 @@ Levantá backend y frontend en paralelo: el servidor de Vite proxea `/api` hacia
 `http://localhost:8000` (ver `frontend/vite.config.ts`), así que podés abrir
 `http://localhost:5173` y consumir la API sin tocar CORS en dev.
 
+### Modelo de datos, seed y migraciones (C-02)
+
+- **8 tablas**: `usuario`, `profesional`, `paciente`, `prestacion`, `sillon`, `turno`, `bloqueo`, `horario_atencion`.
+- **Seed mínimo** idempotente (datos **ficticios**, RN-DATOS-03): usuario `admin@clinica.local`, un profesional activo con su usuario odontólogo vinculado y un paciente de contacto. Las contraseñas se guardan **solo como hash** (RN-AU-04). Se aplica solo al arrancar sobre una base persistente.
+- **Esquema versionado con Alembic**: la dev usa SQLite archivo (`clinica.db`) y `create_all` no agrega columnas; el `lifespan` corre `upgrade head` al arrancar sobre archivo (los tests en memoria usan `create_all`). Comandos:
+
+```powershell
+# desde backend/ (usa DATABASE_URL o el default sqlite:///./clinica.db)
+backend\.venv\Scripts\python.exe -m alembic upgrade head
+backend\.venv\Scripts\python.exe -m alembic downgrade base
+```
+
+Si tenías un `clinica.db` viejo creado por `create_all`, borralo (o `alembic stamp head` si ya coincide) antes de `upgrade head`.
+
 Notas:
 
-- El extra `[dev]` (definido en `backend/pyproject.toml`) instala **ruff**; pytest y httpx ya vienen en las dependencias base.
-- Los tests usan SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `backend/tests/conftest.py`); no tocan la base local. Estado actual: **72 tests passing**.
+- El extra `[dev]` (definido en `backend/pyproject.toml`) instala **ruff**; pytest, httpx y **alembic** ya vienen en las dependencias base.
+- Los tests usan SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `backend/tests/conftest.py`); no tocan la base local ni pasan por Alembic. Estado actual: **112 tests passing**.
 - El frontend usa **TypeScript estricto** (`frontend/tsconfig.json`) y no admite `any`. Las rutas privadas y el interceptor JWT llegan en `C-03`/`C-19`; el `services/api.ts` actual es el wrapper base.
 - Copiá `backend/.env.example` a `backend/.env` y `frontend/.env.example` a `frontend/.env` para configurar el entorno local.
 - Para la estructura por capas del backend y un ejemplo de uso de la API, ver [`backend/README.md`](backend/README.md).

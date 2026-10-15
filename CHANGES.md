@@ -147,15 +147,15 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 ---
 
 ### [C-02] `core-models`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` archivado (2026-10-15)
 - **Scope**: Modelos de dominio + migración inicial + seed mínimo
-  - Modelos SQLAlchemy 2.x (`Mapped`/`mapped_column`): `Usuario`, `Profesional`, `Paciente`, `Prestacion`, `Turno`, `Bloqueo`
+  - Modelos SQLAlchemy 2.x (`Mapped`/`mapped_column`), 8 tablas: `Usuario`, `Profesional`, `Paciente`, `Prestacion`, `Sillon`, `Turno`, `Bloqueo`, `HorarioAtencion`
   - Enums: `RolUsuario{admin,odontologo}`, `EstadoTurno{reservado,confirmado,cancelado,completado}`
   - Mixin de auditoría (`creado_en`); convención de nombres de constraints; `Turno.token_cancelacion` único
-  - `db/session.py` (engine + `get_db`), `db/seed.py` mínimo (1 admin, 1 profesional + su usuario)
-  - Migración 001 (Alembic opcional) con las 6 tablas y FKs/índices (`profesional_id`, `fecha_hora_inicio`)
+  - `db/session.py` (engine + `get_db`), `db/seed.py` mínimo **idempotente** (1 admin con hash PBKDF2, 1 profesional activo + su usuario odontólogo; datos ficticios)
+  - Baseline Alembic **`001_baseline`** con las 8 tablas y FKs/índices (`profesional_id`, `fecha_hora_inicio`)
   - Modelo de **HorarioAtencion** semanal por profesional (config simple; ver Supuesto `SU-03` y gap de agenda)
-  - Tests: creación de cada modelo, unicidad de `email`/`dni`/`token`, defaults de estado
+  - Tests: creación de cada modelo, unicidad de `email`/`dni`/`token`, defaults de estado, idempotencia del seed y consistencia del esquema migrado
 - **Dependencias**: C-01
 - **Governance**: CRITICO
 - **Leer antes**:
