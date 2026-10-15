@@ -8,14 +8,13 @@ from fastapi.responses import JSONResponse
 
 from app import models  # noqa: F401  (registra los modelos en la metadata)
 from app.core.config import settings
-from app.db.base import Base
-from app.db.session import engine
+from app.db.arranque import preparar_base_de_datos
 from app.routers import turnos
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    Base.metadata.create_all(bind=engine)
+    preparar_base_de_datos()
     yield
 
 
