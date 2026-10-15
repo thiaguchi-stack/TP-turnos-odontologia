@@ -20,7 +20,7 @@ Convención: `RN-<AREA>-NN`. La implementación debe respetar estas reglas en la
 | RN-TU-03 | Un paciente no puede reservar sobre: horarios fuera de la agenda configurada del profesional, turnos existentes (del profesional o de su sillón), bloqueos, ni profesionales o sillones inactivos. |
 | RN-TU-04 | Estados válidos: `reservado`, `confirmado`, `cancelado`, `completado`. Transiciones: `reservado → confirmado`, `reservado → cancelado`, `confirmado → cancelado`, `confirmado → completado`. |
 | RN-TU-05 | La cancelación (admin o paciente con token) libera el horario: solo el rol admin cancela turnos ajenos; el paciente cancela únicamente con el `token_cancelacion` de su turno. |
-| RN-TU-06 | Un turno pasado (`fin < ahora`) sin confirmar se puede marcar `completado` (si se atendió) o `cancelado`; no se pueden crear turnos en el pasado. |
+| RN-TU-06 | **Creación**: se rechaza crear un turno si `fecha_hora_inicio < ahora`, porque un turno no puede comenzar en el pasado (coincide con la spec `turnos` y con `turno_service`). **Transiciones**: un turno ya finalizado (`fin < ahora`) sin confirmar se puede marcar `completado` (si se atendió) o `cancelado`. |
 | RN-TU-07 | El sistema muestra solo franjas disponibles: agenda semanal − turnos activos − bloqueos, con redondeo a la grilla de prestación y considerando la disponibilidad del sillón (RN-TU-01/09). |
 | RN-TU-08 | La reprogramación solo reubica un turno en el mismo profesional (v1); se valida de nuevo contra RN-TU-01/03. |
 | RN-TU-09 | Todo turno se asigna a un sillón/box activo (`sillon_id` not null → sillón con `activo=true`). Los turnos de ejemplo/seed respetan esta asignación. |
