@@ -20,7 +20,7 @@
 |----|----------|------------------------|
 | SU-01 | Los pacientes prefieren reservar sin crear cuenta (roto si el research local/encuesta muestra lo contrario) | Bajo: el flujo con token de cancelación cubre la gestión post-reserva |
 | SU-02 | Un profesional atiende un paciente a la vez (regla de no solapamiento válida) | Bajo: es el estándar del sector; si hubiera atención simultánea (asistente/sillón doble) habría que relajar RN-TU-01 |
-| SU-03 | El consultorio opera con horarios semanales fijos por profesional | Medio: si los horarios cambian a diario, hace falta un calendario de disponibilidad por fecha (backlog) |
+| SU-03 | El consultorio opera con horarios semanales fijos por profesional | Medio: si los horarios cambian a diario, hace falta un calendario de disponibilidad por fecha (backlog). **Respaldado por el modelo desde C-02** (`HorarioAtencion` semanal); ver `10_preguntas_abiertas.md` P8 |
 | SU-04 | Los datos simulados alcanzan para la demostración del TP | Bajo: los seeds cubren los flujos de la demo |
 | SU-05 | La cátedra no impone stack ni deploy específico (confirmado: stack libre) | Bajo: si llegara un requisito de infra, se ajusta deploy, no modelo |
 | SU-06 | "TM Dental" no es competidor directo del sistema (es distribuidor B2B, no software de agenda) | Bajo: no afecta la construcción; se revisa en el informe |

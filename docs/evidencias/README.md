@@ -24,15 +24,18 @@ Rutas relativas a la raíz del repo. Todo en español rioplatense.
 
 ## Pendientes (no inventados, no creados)
 
-- **`capturas/` — capturas de pantalla de la UI: PENDIENTE.** El proyecto **no
-  tiene frontend todavía** (ver `README.md` §Stack: "Frontend: Pendiente"), así
-  que no hay nada que capturar. Se crea la carpeta y los archivos cuando exista
-  la SPA (roadmap: `C-11` en adelante). No se sube ninguna imagen inventada.
+- **`capturas/` — capturas de pantalla de la UI: PENDIENTE.** El proyecto tiene el
+  scaffold de React desde `C-01` (build y `tsc` en verde), pero todavía sin
+  páginas de reserva ni zona protegida — las pantallas llegan con la Fase 4
+  (`C-11` en adelante). Se crea la carpeta y los archivos cuando exista la SPA.
+  No se sube ninguna imagen inventada.
 - **`mypy-*.txt` — salida de type-check: ✅.** El repo ya adoptó mypy
   (`[tool.mypy]` con `strict = true` en `backend/pyproject.toml`); la salida
   completa quedó en `mypy-backend.txt`.
 - **Cambios futuros**: cada change que se archive sumará su trío
   `verify-<change>.md` + `pytest-<change>.txt` + `ruff-<change>.txt`.
+  (`c-01-foundation-setup` y `c-02-core-models` están archivados; su trío de
+  evidencia aún no se generó.)
 
 ## Cómo regenerar la evidencia
 

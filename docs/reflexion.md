@@ -24,22 +24,22 @@ El desvío más importante fue **deliberado y documentado**: en vez de encadenar
 
 El stack (React + Vite, FastAPI, SQLAlchemy, SQLite) fue **stack libre**, confirmado por SU-05: la cátedra no impuso tecnología ni deploy. Lo elegí por separación de capas y testabilidad (DD-01), no por moda.
 
-Lo que quedó pendiente tiene una explicación honesta: el backend existente no salió de `C-01`, sino del change de consigna (modelos mínimos, servicio y `POST /turnos`), de modo que `C-01` quedó en deuda hasta el 2026-10-15, cuando se implementó completo (14/14 tasks: scaffold de frontend, stub de `security.py`, CORS y `.env.example`). El ciclo del roadmap va **2 archivados**; el que sigue en el árbol es `C-02 core-models`, con governance CRITICO.
+Lo que quedó pendiente tiene una explicación honesta: el backend existente no salió de `C-01`, sino del change de consigna (modelos mínimos, servicio y `POST /turnos`), de modo que `C-01` quedó en deuda hasta el 2026-10-15, cuando se implementó completo (14/14 tasks: scaffold de frontend, stub de `security.py`, CORS y `.env.example`). El mismo día también se implementó y archivó `C-02 core-models` (8 tablas, seed idempotente con hash pbkdf2 y migración Alembic `001_baseline`, con las 4 decisiones de diseño aprobadas antes de codear). El ciclo del roadmap va **3 archivados**; el que sigue en el árbol es `C-03 auth-jwt-rbac`, también con governance CRITICO.
 
 ## 4. Qué salió bien y qué queda pendiente
 
 **Salió bien:**
 
-- **72 tests verdes** (`backend/tests`: unitarios del servicio con casos de borde `[inicio, fin)`, colisión por profesional, por sillón, por bloqueo, integración del `409`, más el reloj centralizado, la caracterización de turnos en el pasado y la fundación CORS/stub), y `mypy --strict` sin errores en el backend; recién ejecutados antes de escribir esto.
-- **Ciclo OpenSpec completo** cerrado el 2026-10-10 con la spec sincronizada en `openspec/specs/turnos/spec.md` y el cambio archivado. No quedó "código suelto": quedó spec + tests + evidencia.
-- **Trazabilidad**: 8 inspecciones en `docs/bitacora-inspeccion.md`, cada una con archivo y sección que la respalda; `git log` con 7 commits con propósito claro (Discovery, etapas 5-6-7, informe, propuesta C-01, migración de skills y de docs).
+- **112 tests verdes** (`backend/tests`: unitarios del servicio con casos de borde `[inicio, fin)`, colisión por profesional, por sillón, por bloqueo, integración del `409`, el reloj centralizado, la caracterización de turnos en el pasado, la fundación CORS/stub, y el modelo de datos completo con unicidades, seed e idempotencia de migraciones), y `mypy --strict` sin errores en el backend; recién ejecutados antes de escribir esto.
+- **Ciclo OpenSpec completo** cerrado el 2026-10-10 con la spec sincronizada en `openspec/specs/turnos/spec.md` y el cambio archivado, más `C-01` y `C-02` archivados el 2026-10-15 (specs `foundation-setup` y `modelo-datos` sincronizadas). No quedó "código suelto": quedó spec + tests + evidencia.
+- **Trazabilidad**: 8 inspecciones en `docs/bitacora-inspeccion.md`, cada una con archivo y sección que la respalda; `git log` con 18 commits con propósito claro (Discovery, etapas 5-6-7, informe, propuesta C-01, migración de skills y de docs, fundación, modelos y sus archives).
 - **Honestidad documentada**: 4 URLs muertas detectadas y corregidas con registro (I-01), 0 productos inventados, vacíos de mercado dejados como `No evidenciado` en vez de rellenados.
 
 **Queda pendiente:**
 
 - Las pantallas y la lógica de la Fase 4 (`C-11` a `C-15`): existe el scaffold de React (build y `tsc` en verde), pero todavía sin páginas de reserva ni zona protegida.
-- Auth JWT + RBAC (`C-03`, CRITICO), motor de agenda con franjas (`C-07`), reserva pública (`C-09`), hardening de privacidad (`C-17`, CRITICO), seed demo y aceptación E2E (`C-16`, `C-18`).
-- El Q&A interactivo de 11 puntos del Discovery quedó parkeado; el checklist se reconstruyó desde los raw con nota de honestidad, y `CHANGES.md` todavía conserva la nota de "discovery incompleto".
+- Auth JWT + RBAC (`C-03`, CRITICO, el siguiente en el árbol), motor de agenda con franjas (`C-07`), reserva pública (`C-09`), hardening de privacidad (`C-17`, CRITICO), seed demo y aceptación E2E (`C-16`, `C-18`).
+- El Q&A interactivo de 11 puntos del Discovery quedó parkeado; el checklist se reconstruyó desde los raw con nota de honestidad, y la deuda quedó registrada en el state file del orquestador (`.active-orchestrator-state.json`).
 
 ## 5. Aprendizajes sobre ingeniería de software y trabajo individual
 

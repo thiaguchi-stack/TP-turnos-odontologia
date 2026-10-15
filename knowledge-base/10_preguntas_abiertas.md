@@ -19,7 +19,7 @@
 | 5 | ¿El deploy es local (demo) o en la nube (Railway/Render)? | Entrega del TP | No | Preguntar a la cátedra; v1 soporta ambos |
 | 6 | ¿La cancelación del paciente requiere aviso al consultorio (US-104)? | Operación diaria | No | Backlog v2 |
 | 7 | ¿Obra social queda solo informativa o se integra validación de cobertura? | Exactitud de datos | No | Informativa en v1 (ya decidido), validación en backlog |
-| 8 | ¿Los horarios del profesional son semanales fijos (SU-03) o cambian por fecha? | Regla de agenda | No* | *Si cambian por fecha, ajustar agenda_service antes de implementar US-001 |
+| 8 | ¿Los horarios del profesional son semanales fijos (SU-03) o cambian por fecha? | Regla de agenda | No* | **Resuelta (2026-10-15, C-02): semanales fijos.** `HorarioAtencion` modela franjas por `dia_semana` ISO 0–6 sin variación por fecha. Si en `C-07 agenda-engine` se necesitan cambios puntuales por fecha, revisar este supuesto antes de US-001 |
 
 ## Vacíos del research de mercado (oportunidades pendientes)
 
