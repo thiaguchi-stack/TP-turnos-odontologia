@@ -451,7 +451,7 @@ When `step == "done"` (all phases complete or skipped):
      (or equivalent; do NOT use `find`/`ls`)
    - List of files created, one-liner per file.
    - Any phases that were skipped and why.
-   - Suggested next command: `/opsx:propose <primer-change-de-CHANGES.md>` (if CHANGES.md was generated) or the next logical action.
+   - Suggested next command: `/opsx-propose <primer-change-de-CHANGES.md>` (if CHANGES.md was generated) or the next logical action.
 3. Reminder: "Podés re-ejecutar fases individuales: `/active-orchestrator:kb` para agregar dominios, `/active-orchestrator:rules` para regenerar CLAUDE.md, `/active-orchestrator:find-skill` para agregar skills, `/active-orchestrator:registry` para reconstruir el skill-registry después de instalar/quitar skills."
 
 ---

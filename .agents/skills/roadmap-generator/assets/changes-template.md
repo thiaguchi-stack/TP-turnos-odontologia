@@ -9,7 +9,7 @@ Esta es la **estructura exacta** que tenés que generar en la raíz del proyecto
 
 > Índice canónico de todos los changes del proyecto **{NombreProyecto}**.
 > Cada change es atómico: un agente puede implementarlo en una sesión (~4-6 horas).
-> **Leer este archivo antes de ejecutar cualquier `/opsx:propose`.**
+> **Leer este archivo antes de ejecutar cualquier `/opsx-propose`.**
 
 ---
 
@@ -17,8 +17,8 @@ Esta es la **estructura exacta** que tenés que generar en la raíz del proyecto
 
 1. Identificar el change a implementar (verificar que sus dependencias están en `openspec/changes/archive/`).
 2. Leer los docs de la knowledge-base indicados en "Leer antes".
-3. Ejecutar `/opsx:propose <nombre-del-change>`.
-4. Al terminar el change, archivarlo con `/opsx:archive <nombre-del-change>`.
+3. Ejecutar `/opsx-propose <nombre-del-change>`.
+4. Al terminar el change, archivarlo con `/opsx-archive <nombre-del-change>`.
 5. Marcar el checkbox `[x]` en este archivo.
 
 ---

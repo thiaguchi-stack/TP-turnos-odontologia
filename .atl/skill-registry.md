@@ -64,7 +64,7 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Códigos C-NN padding 2 dígitos; kebab-case sin prefijos us-NNN-. Scope con bullets operacionales (endpoints/migraciones/tests concretos), no descriptivos.
 - Dependencias: infra (C-01) primero → modelos core → auth → entidad referenciada → backend antes que frontend → integraciones/pagos al final → admin después → refactors UI al último.
 - Governance: BAJO (scaffolding/CRUD) | MEDIO (estado/flujos) | ALTO (notifs/roles/WS/observabilidad) | CRITICO (auth, pagos, datos sensibles, modelos core).
-- Hook de estado: escribir `state.roadmap` (created_by, source "CHANGES.md", changes lista C-NN); no tocar `step`. Cerrar sugiriendo `/opsx:propose C-01`.
+- Hook de estado: escribir `state.roadmap` (created_by, source "CHANGES.md", changes lista C-NN); no tocar `step`. Cerrar sugiriendo `/opsx-propose C-01`.
 
 ### find-skills
 - Buscar skills del ecosistema (`npx skills find`, browse en skills.sh); líderboard primero para skills conocidas.
@@ -80,7 +80,7 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Skills: leer `.atl/skill-registry.md` como fuente de verdad (no re-escaneo) y mapear skill→rol con tabla; NO copiar compact rules (DRY: viven solo en el registry). Fallback si no existe: escanear `.agents/skills/` + `.claude/skills/` + `~/.claude/skills/`.
 - Reglas duras: stack-aware (PascalCase/anys/tsconfig para React, snake_case/type hints para Python, etc.), NUNCA hardcodeadas.
 - Única parte interactiva = confirmar reglas duras con el usuario (AskUserQuestion) → escribir solo lo confirmado.
-- Secciones contrato: Stack | Base de Conocimiento | Skills Disponibles | Roadmap | Reglas Duras | Flujo de Trabajo (KB → CHANGES → /opsx:propose → archive).
+- Secciones contrato: Stack | Base de Conocimiento | Skills Disponibles | Roadmap | Reglas Duras | Flujo de Trabajo (KB → CHANGES → /opsx-propose → archive).
 
 ### web-scraper
 - Esquema de salida FIJO de 8 campos, siempre en el mismo orden (`references/output-schema.md`), aunque un campo quede `(no publicado)`.

@@ -55,7 +55,7 @@ La fuente de verdad del dominio vive en `knowledge-base/`. **Leé el archivo rel
 
 > Nota: hoy **no hay skills de stack instaladas** (FastAPI/React/testing). Si un agente necesita una skill específica, usar `find-skills` para buscar/recomendar e instalar solo con permiso explícito del usuario.
 
-> Los compact rules de cada skill los resuelve el orquestador desde `.atl/skill-registry.md` (generado por `skill-registry`; no versionado — no está en el repo). Esta tabla solo mapea skill→rol.
+> Los compact rules de cada skill los resuelve el orquestador desde `.atl/skill-registry.md` (generado por `skill-registry`; versionado en el repo). Esta tabla solo mapea skill→rol.
 
 ---
 
@@ -66,10 +66,10 @@ El plan completo está en [CHANGES.md](CHANGES.md). Resumen:
 - **Total**: 18 changes en 6 fases (Fase 0 Cimientos → Fase 5 Datos/privacidad/entrega).
 - **Camino crítico (10)**: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-08 → C-10 → C-13 → C-18`
   (el tramo de reserva online también mide 10: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-09 → C-11 → C-12 → C-18`).
-- **Primer change**: `C-01` (`foundation-setup`) → `/opsx:propose C-01-foundation-setup`.
+- **Próximo change**: `C-03` (`auth-jwt-rbac`, governance **CRITICO**: análisis y aprobación previa, sin código) → `/opsx-propose C-03-auth-jwt-rbac`. `C-01` y `C-02` ya están archivados.
 - **Governance CRITICO**: `C-02` (core-models), `C-03` (auth-jwt-rbac), `C-17` (hardening-privacidad).
 
-**Antes de cualquier `/opsx:propose`**: leé [CHANGES.md](CHANGES.md), verificá que las dependencias estén archivadas, y leé los archivos de "Leer antes" del change.
+**Antes de cualquier `/opsx-propose`**: leé [CHANGES.md](CHANGES.md), verificá que las dependencias estén archivadas, y leé los archivos de "Leer antes" del change.
 
 ---
 
@@ -124,9 +124,9 @@ Son contrato: romperlas es un defecto. Formato `NUNCA X → hacer Y`.
 ```
 1. Leer la KB relevante (knowledge-base/)        → entender el dominio
 2. Identificar el change en CHANGES.md           → respetar dependencias y governance
-3. /opsx:propose C-NN-nombre                     → proposal + design + specs + tasks
+3. /opsx-propose C-NN-nombre                     → proposal + design + specs + tasks
 4. Implementar las tasks (cargando skills)       → respetando las reglas duras
-5. /opsx:archive C-NN-nombre + marcar [x]        → cerrar el change
+5. /opsx-archive C-NN-nombre + marcar [x]        → cerrar el change
 ```
 
 Aplicar TODAS las reglas duras en cada paso. Ante conflicto entre la KB y este archivo, las reglas duras prevalecen.

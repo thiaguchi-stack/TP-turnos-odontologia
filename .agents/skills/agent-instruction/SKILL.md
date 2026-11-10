@@ -112,7 +112,7 @@ Ver la plantilla completa en [assets/agents-template.md](assets/agents-template.
 ## Skills Disponibles       → tabla skill→rol (desde el registry) + línea de referencia a `.atl/skill-registry.md` para los compact rules
 ## Roadmap de Changes       → resumen de CHANGES.md + primer change
 ## Reglas Duras (específicas del proyecto)  → 1 línea de referencia al global + reglas del proyecto confirmadas (stack-aware)
-## Flujo de Trabajo         → KB → CHANGES → /opsx:propose → archive
+## Flujo de Trabajo         → KB → CHANGES → /opsx-propose → archive
 ```
 
 ## Commands

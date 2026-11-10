@@ -143,7 +143,7 @@ Le decís al agente:
 Camino crítico: 7 changes
 Gates de paralelismo: 5
 Primer change recomendado: C-01 (foundation-setup)
-Para arrancar: /opsx:propose C-01-foundation-setup
+Para arrancar: /opsx-propose C-01-foundation-setup
 ```
 
 ---

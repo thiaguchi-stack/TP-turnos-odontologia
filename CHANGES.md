@@ -2,7 +2,7 @@
 
 > Índice canónico de todos los changes del proyecto **TP-turnos-odontologia**.
 > Cada change es atómico: un agente puede implementarlo en una sesión (~4-6 horas).
-> **Leer este archivo antes de ejecutar cualquier `/opsx:propose`.**
+> **Leer este archivo antes de ejecutar cualquier `/opsx-propose`.**
 
 ---
 
@@ -10,8 +10,8 @@
 
 1. Identificar el change a implementar (verificar que sus dependencias están en `openspec/changes/archive/`).
 2. Leer los docs de la knowledge-base indicados en "Leer antes".
-3. Ejecutar `/opsx:propose <nombre-del-change>`.
-4. Al terminar el change, archivarlo con `/opsx:archive <nombre-del-change>`.
+3. Ejecutar `/opsx-propose <nombre-del-change>`.
+4. Al terminar el change, archivarlo con `/opsx-archive <nombre-del-change>`.
 5. Marcar el checkbox `[x]` en este archivo.
 
 ---
@@ -489,7 +489,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 | C-17 | hardening-privacidad | 5 — Datos/privacidad/entrega | CRITICO | C-09, C-10 |
 | C-18 | aceptacion-e2e-entrega | 5 — Datos/privacidad/entrega | MEDIO | C-12, C-13, C-14, C-15, C-16 |
 
-**Primer change recomendado**: `C-01` (foundation-setup) → `/opsx:propose C-01-foundation-setup`
+**Próximo change recomendado**: `C-03` (auth-jwt-rbac, governance CRITICO: análisis y aprobación previa) → `/opsx-propose C-03-auth-jwt-rbac` (`C-01` y `C-02` ya archivados)
 
 ---
 
@@ -497,7 +497,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 
 > Changes del TP que no siguen el árbol de dependencias y se proponen de forma autónoma. Cada uno declara su desvío en su `proposal.md` y es absorbido por el change del roadmap que le corresponde.
 >
-> ✅ **Ciclo completo cerrado**: `crear-turno-sin-solapamientos` (explore → propose → apply → verify → archive) el 2026-10-10. Resto del TP puede continuar con `C-01`.
+> ✅ **Ciclo completo cerrado**: `crear-turno-sin-solapamientos` (explore → propose → apply → verify → archive) el 2026-10-10. Resto del TP puede continuar con `C-03`.
 
 | Change OPSX | Alineado a | Desvío declarado |
 |-------------|-----------|------------------|

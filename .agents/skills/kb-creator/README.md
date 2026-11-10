@@ -98,7 +98,7 @@ Los 10 canónicos son **siempre obligatorios**. Si el dominio lo requiere (ej. e
 ## Por qué esta estructura
 
 - **Consistencia**: cualquier proyecto documentado con esta skill comparte la misma estructura → onboarding más rápido.
-- **Compatibilidad con OpenSpec**: la KB es input directo para `/opsx:explore` y skills de roadmap (como `roadmap-generator`).
+- **Compatibilidad con OpenSpec**: la KB es input directo para `/opsx-explore` y skills de roadmap (como `roadmap-generator`).
 - **Trazabilidad de decisiones**: el archivo 09 fuerza a documentar el porqué de cada elección → menos discusiones futuras "¿por qué hicimos esto así?".
 - **Visibilidad de huecos**: el archivo 10 hace explícitas las preguntas pendientes → no quedan tapadas en commits o threads de Slack.
 

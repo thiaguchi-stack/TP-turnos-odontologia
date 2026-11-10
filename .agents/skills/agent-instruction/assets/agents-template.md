@@ -65,7 +65,7 @@ El plan de implementación completo está en [CHANGES.md](CHANGES.md). Resumen:
 - **Camino crítico** ({K}): `{C-01 → C-02 → ... → C-NN}`.
 - **Primer change**: `C-01` ({nombre}).
 
-**Antes de cualquier `/opsx:propose`**: leé [CHANGES.md](CHANGES.md), identificá las dependencias del change y los archivos de "Leer antes".
+**Antes de cualquier `/opsx-propose`**: leé [CHANGES.md](CHANGES.md), identificá las dependencias del change y los archivos de "Leer antes".
 
 ---
 
@@ -89,9 +89,9 @@ Acá van: (a) las reglas específicas de este proyecto, derivadas de su stack ({
 ```
 1. Leer la KB relevante (knowledge-base/)        → entender el dominio
 2. Identificar el change en CHANGES.md           → respetar dependencias
-3. /opsx:propose C-NN-nombre                     → proposal + design + specs + tasks
+3. /opsx-propose C-NN-nombre                     → proposal + design + specs + tasks
 4. Implementar las tasks (cargando skills)       → respetando las reglas duras
-5. /opsx:archive C-NN-nombre + marcar [x]        → cerrar el change
+5. /opsx-archive C-NN-nombre + marcar [x]        → cerrar el change
 ```
 
 Aplicar TODAS las reglas duras en cada paso. Ante conflicto entre la KB y este archivo, las reglas duras prevalecen.
