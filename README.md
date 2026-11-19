@@ -10,7 +10,8 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 - ✅ **Backend del ciclo archivado**: `backend/app/` (capas core/db/models/schemas/services/routers) + **114 tests passing**.
 - ✅ **C-02 `core-models` archivado** (2026-10-15): 8 tablas (incluye `usuario`, `sillon` y `horario_atencion`), mixin de auditoría, unicidades/índices de agenda, seed mínimo idempotente con datos ficticios y esquema versionado con Alembic (`001_baseline`); spec `modelo-datos` sincronizada (9 requirements).
 - ✅ **Fundación C-01**: `c-01-foundation-setup` implementado y archivado (CORS configurable, stub `core/security.py`, `.env.example` y scaffold `frontend/` Vite + React 18 + TS con build verificado).
-- 🔲 **Roadmap OPSX**: continuar en el camino crítico `C-03 → C-04 → …` (ver `CHANGES.md`).
+- ✅ **C-03 `auth-jwt-rbac` archivado** (2026-11-18): JWT + RBAC implementado con TDD y spec `user-auth` sincronizada (`CHANGES.md:171-173`).
+- 🔲 **Roadmap OPSX**: continuar en `C-06` (`bloqueos-api`), según `AGENTS.md:82` (ver `CHANGES.md`).
 
 ## Dónde está cada entregable
 

@@ -3,6 +3,15 @@
 Fecha: 2026-11-18
 Repo: `C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia`
 
+**Actualización 2026-11-19:** todo lo que acá dice "en esta sesión" corresponde a
+la sesión del 2026-11-18 y se conserva como evidencia histórica. Hoy la skill
+`auth-contract-audit` **sí figura en la lista de skills disponibles** de la
+sesión actual (`location: .agents/skills/auth-contract-audit/SKILL.md`): se
+verificó su **disponibilidad/descubrimiento**, no una invocación completa de la
+Skill tool. Además, C-03 está archivado en
+`openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` y
+`openspec list --json` devuelve `{"changes": []}` (`CHANGES.md:172-173`).
+
 Arranqué sin contexto previo, solo con las instrucciones que el repo expone. No
 instalé nada, no corrí `npx`, no hice commits y no modifiqué ningún otro archivo.
 
@@ -171,12 +180,15 @@ la sesión la tenga registrada**. El repo lo describe así:
   del tipo *"Use the Skill tool to invoke `<skill-name>` for this project"* y
   `Skill("discovery-research")`: presuponen la herramienta.
 
-Conclusión sobre este punto: el descubrimiento funciona; la invocación real de
-la Skill tool **no** quedó comprobada en esta sesión.
+Conclusión sobre este punto (2026-11-18): el descubrimiento funcionó; la
+invocación real de la Skill tool **no** quedó comprobada en esa sesión.
+**Actualización 2026-11-19:** en la sesión actual la skill sí aparece disponible
+en la lista de skills, con location `.agents/skills/auth-contract-audit/SKILL.md`;
+sigue sin haberse ejecutado una invocación completa para no alterar evidencias.
 
 ## 5. Ambigüedades, omisiones y fricciones reales encontradas
 
-1. **La Skill tool no está expuesta en esta sesión** y el repo la da por
+1. **(2026-11-18) La Skill tool no estaba expuesta en esa sesión** y el repo la daba por
    existente (`active-orchestrator/SKILL.md:248,275`), con un precedente de
    `Skill "auth-contract-audit" not found` en otra sesión
    (`docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md:17-22`). El `AGENTS.md`
@@ -216,11 +228,14 @@ la Skill tool **no** quedó comprobada en esta sesión.
 
 ## Conclusión general
 
-La comprobación se cumple **en forma parcial**. Se cumple el descubrimiento en
+Conclusión general de la sesión del 2026-11-18: la comprobación se cumplió **en forma parcial**. Se cumple el descubrimiento en
 sesión nueva: siguiendo solo `AGENTS.md`/`CLAUDE.md` → `.atl/skill-registry.md`
 → `SKILL.md` → READMEs, un agente encuentra la skill propia
 `auth-contract-audit`, entiende su procedimiento y localiza el MCP `context`
 con su propósito, límites y config. No se cumple la verificación de carga
-efectiva: la Skill tool no está disponible en esta sesión (invocación no
-emitida, sin respuesta literal propia) y los recursos del MCP aparecen vacíos.
+efectiva: la Skill tool no estaba disponible en esa sesión (invocación no
+emitida, sin respuesta literal propia) y los recursos del MCP aparecieron vacíos.
 La evidencia queda registrada acá sin simular resultados ni secretos.
+**Actualización 2026-11-19:** la disponibilidad de `auth-contract-audit` ya quedó
+verificada en la lista de skills de la sesión actual; la invocación sigue sin
+comprobarse y C-03 está archivado (`CHANGES.md:172-173`).

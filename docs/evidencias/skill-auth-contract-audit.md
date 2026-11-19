@@ -2,6 +2,8 @@
 
 Fecha: 2026-11-18. Repo: `C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia`.
 
+**Actualización 2026-11-19:** esta evidencia registra la creación de la skill y el contexto del 2026-11-18, cuando C-03 era el próximo change. Hoy `auth-contract-audit` sí figura en la lista de skills disponibles de la sesión (`.agents/skills/auth-contract-audit/SKILL.md`; disponibilidad verificada, invocación completa no comprobada) y C-03 está archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:172-173`).
+
 ## 1. Solicitud exacta a la skill creadora
 
 Invocación literal a la herramienta Skill (la herramienta no acepta campos de mensaje adicionales):

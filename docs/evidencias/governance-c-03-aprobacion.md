@@ -1,7 +1,7 @@
 # Registro de aprobación de governance — C-03 `auth-jwt-rbac`
 
 - **Fecha**: 2026-11-18
-- **Change**: `c-03-auth-jwt-rbac` (carpeta `openspec/changes/c-03-auth-jwt-rbac/`)
+- **Change**: `c-03-auth-jwt-rbac` (carpeta original `openspec/changes/c-03-auth-jwt-rbac/`, hoy archivada en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`)
 - **Governance**: **CRITICO** (`AGENTS.md:124`, `CHANGES.md:181`)
 - **Aprobado por**: usuario, con confirmación explícita en sesión: *“apruebo el governance, lo demás lo hago manualmente yo así que ignoralo”*.
 - **Alcance de la aprobación**: habilita escribir código de producción y ejecutar las tareas 1.2 a 5.3. **No** habilita marcar `[x]` en `CHANGES.md` ni archivar el change sin completar y verificar todas las tareas.
@@ -28,3 +28,5 @@ El usuario realiza manualmente el video, el ZIP `TP-Skills-MCP-Apellido*.zip` y 
 ## Conclusión
 
 **Gate CRITICO cerrado — listo para implementar.** La restricción de `design.md:15-17` (“no autoriza escribir código”) queda levantada por esta aprobación humana; se aplica TDD estricto y se pausa ante cualquier hallazgo que cambie el diseño.
+
+**Actualización 2026-11-19:** la implementación terminó (20/20 tareas verificadas) y el change quedó archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:172-173`).

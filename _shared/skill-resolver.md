@@ -28,7 +28,8 @@ El registry se construye **una vez** (costo alto: leer todos los `SKILL.md` y di
 
 ## Gotchas verificados (2026-11-18)
 
-- Agregar un `SKILL.md` al repo **no** lo hace visible de inmediato para la herramienta `Skill` en la sesión en curso: al intentar `Skill "auth-contract-audit"` respondió `Skill "auth-contract-audit" not found`. El descubrimiento por `AGENTS.md`/registry sí funcionó y el procedimiento se ejecutó leyendo el `SKILL.md`. La invocación por herramienta queda para una sesión que cargue la skill.
+- Agregar un `SKILL.md` al repo **no** lo hizo visible de inmediato en la sesión del 2026-11-18: al intentar `Skill "auth-contract-audit"` respondió `Skill "auth-contract-audit" not found`. El descubrimiento por `AGENTS.md`/registry sí funcionó y el procedimiento se ejecutó leyendo el `SKILL.md`. La invocación por herramienta no quedó comprobada en esa sesión.
+- **Actualización 2026-11-19:** en la sesión actual `auth-contract-audit` **sí aparece en la lista de skills disponibles**, con location `.agents/skills/auth-contract-audit/SKILL.md`. Queda verificada la **disponibilidad/descubrimiento**, NO una invocación completa de la Skill tool. El bullet anterior describe ese episodio del 2026-11-18; no es una regla general.
 - Un MCP no es una skill: se documenta como integración (config global `~/.config/opencode/opencode.json` + copia reproducible en el repo) y no entra en este registry.
 - La base de conocimiento prevalece sobre documentación externa; el MCP es apoyo técnico de firmas y hashing, nunca fuente de reglas de negocio.
 - Si se regenera el registry, volver a revisar los bloques de `auth-contract-audit`: se recalculan desde el `SKILL.md`.

@@ -2,6 +2,8 @@
 
 Fecha de consulta de las fuentes externas: 2026-11-18. Alcance: Parte 1 del TP de Metodología I (consigna `mcp-skills.pdf`).
 
+**Actualización 2026-11-19:** esta ficha conserva el contexto de la investigación del 2026-11-18, cuando `C-03` era el próximo change y su implementación estaba fuera de alcance. Hoy `C-03` está archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:172-173`) y la skill `auth-contract-audit` figura disponible en la lista de skills de la sesión actual (sin invocación nueva verificada).
+
 ## 1. Necesidad detectada y change elegido
 
 Se eligió `C-03-auth-jwt-rbac` (JWT OAuth2 password flow + RBAC admin/odontólogo): es el próximo del camino crítico, tiene governance **CRITICO** y depende de `C-02 core-models`, archivado el 2026-10-15. No requiere funcionalidades inexistentes —el seed ficticio y el stub de `security.py` ya llegaron con C-02—, así que se pueden preparar análisis, specs y tasks; la implementación queda **fuera de alcance** hasta el gate humano de `AGENTS.md`. La tarea repetible es revisar a mano el contrato de seguridad al preparar artefactos de auth: RN-AU-01/02/03/04, DD-07 (routers delgados, regla en servicios) y RN-DATOS-01/02. Hoy esa revisión vive en la KB y en la memoria del equipo, sin checklist ni evidencia; el riesgo es perder una regla en el delta o escribir tasks no verificables. La necesidad MCP es complementaria: consultar documentación **versionada** de FastAPI 0.110.x y passlib 1.7.4 sin depender de un índice remoto mutable que responda con la API de otra release. La KB sigue mandando; el MCP solo reduce el riesgo de errar firmas, hashing y OAuth2.

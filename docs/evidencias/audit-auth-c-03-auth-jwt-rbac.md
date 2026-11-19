@@ -1,10 +1,11 @@
 # Auditoría de contrato de auth — c-03-auth-jwt-rbac
 
+**Actualización 2026-11-19:** esta evidencia es el snapshot de la auditoría del 2026-11-18, cuando C-03 estaba preparado y NO implementado. Hoy el change está archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:172-173`) y `openspec list --json` devuelve `{"changes": []}`. La skill `auth-contract-audit` sí figura en la lista de skills disponibles de la sesión actual (`.agents/skills/auth-contract-audit/SKILL.md`): eso verifica disponibilidad, NO una invocación nueva de la Skill tool (no se ejecutó para no sobrescribir esta evidencia).
+
 ## Alcance
 
-- Fecha: 2026-11-18. Cambio preparado (NO implementado): `governance CRITICO`.
-- Artefactos leídos: `openspec/changes/c-03-auth-jwt-rbac/proposal.md`,
-  `design.md`, `specs/user-auth/spec.md`, `tasks.md`.
+- Fecha: 2026-11-18. Cambio preparado (NO implementado) en ese momento: `governance CRITICO`.
+- Artefactos leídos en su ruta original (hoy archivada en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`): `openspec/changes/c-03-auth-jwt-rbac/proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`.
 - KB citada: `knowledge-base/03_actores_y_roles.md`,
   `knowledge-base/05_reglas_de_negocio.md`,
   `knowledge-base/07_flujos_principales.md`,
@@ -20,6 +21,10 @@
   disponibles de esta sesión). No se simuló la invocación: se leyó
   `.agents/skills/auth-contract-audit/SKILL.md` y se ejecutó su procedimiento
   manualmente, paso a paso. Esta acotación queda registrada acá como evidencia.
+  **Actualización 2026-11-19:** lo anterior describe solo la sesión del
+  2026-11-18. Hoy la skill sí aparece en la lista de skills disponibles de la
+  sesión (`location: .agents/skills/auth-contract-audit/SKILL.md`); verificamos
+  su disponibilidad, no una invocación completa en esta sesión.
 
 ## Reglas transcriptas
 
@@ -91,9 +96,11 @@ credenciales, RBAC y rutas públicas de reserva.
 ## Conclusión (ANTES)
 
 `Requiere ajustes` — hay cuatro gaps abiertos (dos altos) que impiden dar por
-cubiertas RN-AU-01, RN-AU-04, RN-DATOS-01/02 y DD-08. Además, el gate de
-governance CRITICO (`CHANGES.md:181`, `AGENTS.md:124`) sigue pendiente de
-aprobación humana: esta auditoría no autoriza implementar ni archivar el change.
+cubiertas RN-AU-01, RN-AU-04, RN-DATOS-01/02 y DD-08. Además, en ese momento el
+gate de governance CRITICO (`CHANGES.md:181`, `AGENTS.md:124`) seguía pendiente
+de aprobación humana: esta auditoría no autorizaba implementar ni archivar el
+change. **Actualización 2026-11-19:** el gate se aprobó y el change se archivó
+(`docs/evidencias/governance-c-03-aprobacion.md`, `CHANGES.md:172-173`).
 
 ---
 
@@ -133,8 +140,11 @@ sigue marcada como supuesto a validar en el gate, no como regla inventada.
 `Requiere ajustes` — los ajustes de trazabilidad ya están cerrados: las ocho
 reglas transcriptas tienen escenario y verificación citados, y no quedan gaps
 de especificación. Se mantiene `Requiere ajustes` y **no** se emite
-`Listo para implementar` porque falta una condición externa a la auditoría: la
-aprobación humana del gate CRITICO (`CHANGES.md:181`, `AGENTS.md:124`) y la
-respuesta a los supuestos `SU-HASH-LEGADO` / `SU-RATELIMIT` (`design.md:149-155`).
-Esta auditoría revisó artefactos: no escribió código de producción, no corrió
-tests de implementación, no ejecutó apply ni archivó el change.
+`Listo para implementar` porque en ese momento faltaba una condición externa a
+la auditoría: la aprobación humana del gate CRITICO (`CHANGES.md:181`,
+`AGENTS.md:124`) y la respuesta a los supuestos `SU-HASH-LEGADO` /
+`SU-RATELIMIT` (`design.md:149-155`). Esta auditoría revisó artefactos: no
+escribió código de producción, no corrió tests de implementación, no ejecutó
+apply ni archivó el change. **Actualización 2026-11-19:** gate aprobado,
+supuestos resueltos y change archivado (`docs/evidencias/governance-c-03-aprobacion.md`,
+`CHANGES.md:172-173`); esa conclusión corresponde al snapshot del 2026-11-18.

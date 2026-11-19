@@ -4,6 +4,8 @@
 >
 > **Materia:** Metodología I · **Integrante:** Thiago Oviedo · **Tipo:** TP individual · **Fecha:** 2026-10-11
 
+**Actualización 2026-11-19:** la bitácora registra decisiones al 2026-10-11; cuando dice que C-02/C-03 "aún no están archivados" se refiere a ese momento. Hoy ambos están archivados (`CHANGES.md:171-173`) y el siguiente change es `C-06` (`AGENTS.md:82`).
+
 **Cómo se lee la tabla:** cada fila es una inspección. *Etapa* = momento del flujo; *Decisión* = veredicto del control (aprobar / ajustar / parkear); *Qué se revisó* = artefactos y secciones mirados; *Qué se corrigió / Por qué no* = acción concreta o justificación de no tocar nada.
 
 ---
@@ -14,7 +16,7 @@
 |---|---|---|---|---|
 | I-01 | **Discovery (Etapa 2)** — cierre del research de mercado | **Ajustar** | `discovery/raw/{argentina,latam,internacional}.md` (34 sistemas); `discovery/verificacion-fuentes.md` §Resultado global | Se detectaron **4 URLs muertas/cambiadas y 2 datos de contenido desactualizados**. Se corrigió el raw y quedó asentado en `verificacion-fuentes.md` §3 (C-01…C-07). Ver §2 de esta bitácora. |
 | I-02 | **Discovery (Etapa 2)** — verificación de fuentes | **Aprobar** | `verificacion-fuentes.md` §1 (6 fuentes a fondo, una por tipo) y §2 (55 URLs) | Se confirmó que **0 productos son inventados** y que las 4 URLs rotas son rutas secundarias, no dominios inexistentes. No se eliminó ningún sistema del relevamiento. |
-| I-03 | **Roadmap / gobernanza** — antes de codear | **Parquear (desvío deliberado)** | `CHANGES.md` §camino crítico; `.active-orchestrator-state.json` §opsx | El change de consigna `crear-turno-sin-solapamientos` se declaró **autónomo**, sin encadenar C-01→C-07, porque **C-02 y C-03 son governance CRITICO** y aún no están archivados. Evita arrastrar governance CRITICO a una regla que se prueba en aislamiento. |
+| I-03 | **Roadmap / gobernanza** — antes de codear | **Parquear (desvío deliberado)** | `CHANGES.md` §camino crítico; `.active-orchestrator-state.json` §opsx | El change de consigna `crear-turno-sin-solapamientos` se declaró **autónomo**, sin encadenar C-01→C-07, porque **C-02 y C-03 eran governance CRITICO** y al 2026-10-11 aún no estaban archivados. Evita arrastrar governance CRITICO a una regla que se prueba en aislamiento. |
 | I-04 | **Exploración (OPSX Explore)** — alcance del change | **Ajustar** | `docs/explore/relevamiento-crear-turno-sin-solapamientos.md` §4.1, §4.2, §4.3 | **Ajuste de alcance:** se acotó el change a **Opción B (dominio + API mínima, sin frontend)** y se decidió **no acoplar `crear_turno` al calendario `HorarioAtencion`** (§4.1), dejando las franjas disponibles (RN-TU-07) para `C-07`. Motivo: SU-03 y la Pregunta 8. |
 | I-05 | **KB ↔ modelo de datos** — coherencia sillón/box | **Ajustar** | `knowledge-base/04_modelo_de_datos.md`; `knowledge-base/09_decisiones_y_supuestos.md` (DD-09); `knowledge-base/05_reglas_de_negocio.md` (RN-TU-01) | Se incorporó **`Sillon` como recurso de primera clase** (antes no existía) y se reescribió RN-TU-01 para prohibir solapamiento **por profesional y por sillón/box** (turno–turno y turno–bloqueo). Motivo: el research no mostraba esta regla en ningún competidor; se adoptó como **diferenciador del MVP**. |
 | I-06 | **KB ↔ research** — vacíos de mercado | **Aprobar** | `knowledge-base/10_preguntas_abiertas.md` §Vacíos del research (OP-01..OP-04) | No se inventaron datos para cerrar los vacíos: se los dejó como **preguntas abiertas / `No evidenciado`**, distinguiendo lo `(C)` comprobado de lo `(A)` declarado. |

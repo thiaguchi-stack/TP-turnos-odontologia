@@ -170,7 +170,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 
 ### [C-03] `auth-jwt-rbac`
 - **Estado**: `[x]` archivado (2026-11-18)
-- **Preparación SDD + cierre (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (`proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Gate **CRITICO aprobado** por el usuario el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`). Implementación completada con TDD estricto: 20/20 tareas verificadas, 151 tests pasados y Ruff limpio; spec `user-auth` sincronizada al main con `Sync now`. Change archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`.
+- **Preparación SDD + cierre (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (ruta original, hoy archivada en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`; `proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Gate **CRITICO aprobado** por el usuario el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`). Implementación completada con TDD estricto: 20/20 tareas verificadas, 151 tests pasados y Ruff limpio; spec `user-auth` sincronizada al main con `Sync now`. Change archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`.
 - **Scope**: Autenticación JWT (OAuth2 password flow) + RBAC para admin/odontólogo
   - `POST /auth/login` → JWT Bearer (`sub`, `rol`, `profesional_id`, `exp`), hash bcrypt/argon2
   - Dependencias FastAPI: `get_current_user`, `require_role("admin")`, `require_odontologo_own` (RN-AU-02)
@@ -501,11 +501,11 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 
 > Changes del TP que no siguen el árbol de dependencias y se proponen de forma autónoma. Cada uno declara su desvío en su `proposal.md` y es absorbido por el change del roadmap que le corresponde.
 >
-> ✅ **Ciclo completo cerrado**: `crear-turno-sin-solapamientos` (explore → propose → apply → verify → archive) el 2026-10-10. Resto del TP puede continuar con `C-03`.
+> ✅ **Ciclo completo cerrado**: `crear-turno-sin-solapamientos` (explore → propose → apply → verify → archive) el 2026-10-10. En ese momento el resto del TP podía continuar con `C-03`; **actualización 2026-11-19**: `C-03` ya está archivado y el siguiente change es `C-06` (`AGENTS.md:82`).
 
 | Change OPSX | Alineado a | Desvío declarado |
 |-------------|-----------|------------------|
-| `crear-turno-sin-solapamientos` | C-07 `agenda-engine`, C-08 `turnos-agenda-api` | Autónomo y acotado: modelos mínimos + `turno_service.crear_turno` + `POST /turnos`, sin auth ni franjas (RN-TU-07). C-02/C-03 son governance CRITICO y no están archivados; su persistencia se absorbe en `C-02`. |
+| `crear-turno-sin-solapamientos` | C-07 `agenda-engine`, C-08 `turnos-agenda-api` | Autónomo y acotado: modelos mínimos + `turno_service.crear_turno` + `POST /turnos`, sin auth ni franjas (RN-TU-07). Al 2026-10-10 C-02/C-03 eran governance CRITICO y no estaban archivados; su persistencia se absorbe en `C-02`. **Actualización 2026-11-19:** ambos están archivados (ver entradas `[x]` de `C-02` y `C-03`). |
 
 ---
 

@@ -1,12 +1,14 @@
 # Informe de aplicación — Skill propia y MCP en C-03
 
-Fecha: 2026-11-18. Change: `c-03-auth-jwt-rbac` (**preparado, NO implementado**). Alcance: Parte 2 del TP `mcp-skills.pdf`.
+Fecha original: 2026-11-18. Change: `c-03-auth-jwt-rbac` (en ese momento **preparado, NO implementado**). Alcance: Parte 2 del TP `mcp-skills.pdf`.
+
+**Actualización 2026-11-19:** C-03 fue implementado y archivado el 2026-11-18 en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:171-173`); `openspec list --json` devuelve `{"changes": []}`. La skill `auth-contract-audit` sí figura hoy en la lista de skills disponibles de la sesión, con location `.agents/skills/auth-contract-audit/SKILL.md`: eso verifica disponibilidad/descubrimiento, NO una invocación completa de la Skill tool. El resto del informe conserva el estado de la sesión original.
 
 ## 1. Resultados
 
 - **Skill propia**: `auth-contract-audit`, generada con la skill creadora `opencode-skill-creator` v0.3.7 (invocada de verdad, con staging en `%TEMP%\opencode-skills\`). `skill_validate` devolvió `{"valid": true, "message": "Skill is valid!"}`.
 - **MCP**: servidor local `context` (`@neuledge/context@1 serve`) operativo con `fastapi@0.110.3` (824 secciones) y `passlib@1.7.4` (152 secciones). Se ejecutaron `list`, `query` y cuatro llamadas a `context_get_docs`.
-- **Change C-03**: `openspec status` indica los 4 artefactos en `done` (`isPlanningComplete: true`), `openspec validate --strict` limpio, **14 escenarios verificables** y **20 tareas** con verificación explícita. `completedTasks: 0/20`: ninguna tarea de implementación se ejecutó.
+- **Change C-03 (estado al 2026-11-18)**: `openspec status` indicaba los 4 artefactos en `done` (`isPlanningComplete: true`), `openspec validate --strict` limpio, **14 escenarios verificables** y **20 tareas** con verificación explícita. `completedTasks: 0/20`: ninguna tarea de implementación se había ejecutado todavía. Hoy: 20/20 verificadas y change archivado (`CHANGES.md:173`).
 - **Fundación**: skill registrada y referenciada; MCP documentado como tooling de desarrollo, no como integración del producto.
 
 ## 2. Evidencias
@@ -19,7 +21,7 @@ Fecha: 2026-11-18. Change: `c-03-auth-jwt-rbac` (**preparado, NO implementado**)
 | [../evidencias/mcp-context-c03.md](../evidencias/mcp-context-c03.md) | Cuatro solicitudes a `context_get_docs`, con aporte a decisiones de `design.md`/`tasks.md` |
 | [../evidencias/audit-auth-c-03-auth-jwt-rbac.md](../evidencias/audit-auth-c-03-auth-jwt-rbac.md) | Auditoría de las 8 reglas, mapa regla→escenario→tarea y correcciones antes/después |
 | [../evidencias/nueva-sesion-skill-mcp.md](../evidencias/nueva-sesion-skill-mcp.md) | Comprobación en sesión nueva: descubrimiento por instrucciones y resultado de la invocación |
-| [../../openspec/changes/c-03-auth-jwt-rbac/](../../openspec/changes/c-03-auth-jwt-rbac/) | `proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md` |
+| [../../openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/](../../openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/) | `proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md` (ruta original: `openspec/changes/c-03-auth-jwt-rbac/`, hoy archivada) |
 
 ## 3. Archivos modificados y motivo
 
@@ -33,8 +35,8 @@ Fecha: 2026-11-18. Change: `c-03-auth-jwt-rbac` (**preparado, NO implementado**)
 | `docs/skills-mcp/README.md` | Instalación, config V1 sin secretos, comprobación, límites y problemas resueltos del MCP. |
 | `docs/evidencias/README.md` | Índice de las nuevas evidencias. |
 | `docs/evidencias/*` (5 archivos) | Evidencias de creadora, MCP, auditoría y sesión nueva. |
-| `openspec/changes/c-03-auth-jwt-rbac/**` | Artefactos del change preparado. |
-| `CHANGES.md` | Nota de preparación de C-03; el estado sigue `[ ] pendiente`. |
+| `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/**` | Artefactos del change preparado (ruta original: `openspec/changes/c-03-auth-jwt-rbac/**`). |
+| `CHANGES.md` | Nota de preparación de C-03; en ese momento el estado era `[ ] pendiente`. **Actualización 2026-11-19**: hoy figura `[x] archivado` (`CHANGES.md:172-173`). |
 
 La config del MCP quedó en `~/.config/opencode/opencode.json` (fuera del repo); por eso se documentó en `docs/skills-mcp/README.md`. La KB no se modificó: las reglas ya cubrían el caso y la auditoría las cita.
 
@@ -50,7 +52,7 @@ La config del MCP quedó en `~/.config/opencode/opencode.json` (fuera del repo);
 
 ## 5. Limitaciones
 
-- La Skill tool **no expuso `auth-contract-audit`** en la sesión de proposición (`Skill "auth-contract-audit" not found`) ni en la de verificación. El descubrimiento por `AGENTS.md`/registry funciona y el procedimiento se ejecutó manualmente desde `SKILL.md`, pero la invocación mediante la herramienta queda **sin comprobar**; requiere una sesión que cargue la skill. La creadora sí se invocó porque estaba registrada en la sesión.
+- En las sesiones del 2026-11-18 la Skill tool **no expuso `auth-contract-audit`** (`Skill "auth-contract-audit" not found`); el descubrimiento por `AGENTS.md`/registry funcionó y el procedimiento se ejecutó manualmente desde `SKILL.md`, sin invocación verificada en ese momento. La creadora sí se invocó porque estaba registrada en la sesión. **Actualización 2026-11-19:** la skill `auth-contract-audit` **sí aparece en la lista de skills disponibles** de la sesión actual (`location: .agents/skills/auth-contract-audit/SKILL.md`). Queda verificada la **disponibilidad/descubrimiento**, NO una invocación completa de la Skill tool.
 - El MCP es solo lectura de documentación; sin credenciales ni datos reales de pacientes. Ante conflicto, prevalece la KB. Quedó pendiente verificar la cuota exacta de Context7 sin API key.
 - **No hay video, ZIP ni `ENTREGA.md`**: requieren grabación y datos del equipo. **No hay commits**: la regla dura del repo exige pedido explícito.
-- C-03 sigue en governance CRITICO: hace falta aprobación humana y resolver `SU-HASH-LEGADO` y `SU-RATELIMIT` antes de cualquier implementación. No se escribió código de producción ni se corrieron tests de implementación.
+- C-03 era governance CRITICO: en la sesión original hacía falta aprobación humana y resolver `SU-HASH-LEGADO` y `SU-RATELIMIT` antes de cualquier implementación; ahí no se escribió código de producción ni se corrieron tests de implementación. **Actualización 2026-11-19:** el gate se aprobó, las 20 tareas se verificaron con TDD y el change quedó archivado (`docs/evidencias/governance-c-03-aprobacion.md`, `CHANGES.md:172-173`); el siguiente change del roadmap es `C-06` (`AGENTS.md:82`).

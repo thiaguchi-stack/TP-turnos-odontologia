@@ -6,6 +6,8 @@
 > **Regla de consigna**: la implementación puede ser una API o un módulo con lógica de dominio; **no exige interfaz gráfica**.
 > **Documento**: solo relevamiento. No se generaron artefactos de propose (`proposal.md`, `design.md`, `tasks.md`).
 
+**Actualización 2026-11-19:** este relevamiento es el snapshot del 2026-10-10. Los "hoy" del texto se refieren a esa fecha: C-02 y C-03 ya están archivados (`CHANGES.md:171-173`) y `openspec list --json` devuelve `{"changes": []}`.
+
 ---
 
 ## 1. Problema a cubrir
@@ -171,8 +173,8 @@ La consigna admite *"una API o un módulo con lógica de dominio"*. Opciones:
 
 `C-07 agenda-engine` tiene dependencias C-04+C-05+C-06 (→ C-03 → C-02 → C-01),
 y **C-02 `core-models` y C-03 `auth-jwt-rbac` son governance CRITICO** (no se
-codean sin análisis y aprobación previa). Hoy ningún cambio del roadmap está
-archivado → **ninguna dependencia está satisfecha**.
+codean sin análisis y aprobación previa). Al 2026-10-10 ningún cambio del roadmap
+estaba archivado → **ninguna dependencia estaba satisfecha**.
 
 **Pregunta abierta (la más importante)**: ¿este change es
 

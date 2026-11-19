@@ -130,5 +130,10 @@ regla del proyecto, no de FastAPI.
 | fastapi: "OAuth2PasswordRequestForm" | 4 resultados | Formulario de login (Decisión 1; tarea 2.3) |
 | fastapi: "get_current_user" | 3 resultados | Dependencia con sub-dependencia Bearer (Decisiones 1/2; tarea 3.2) |
 
-Estado: evidencia de apoyo técnico; no habilita implementación de C-03
-(`governance CRITICO`, gate pendiente).
+Estado al 2026-11-18: evidencia de apoyo técnico; no habilitaba implementación
+de C-03 (`governance CRITICO`, gate pendiente en ese momento).
+
+**Actualización 2026-11-19:** el gate se aprobó, C-03 se implementó y archivó en
+`openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/` (`CHANGES.md:172-173`,
+`docs/evidencias/governance-c-03-aprobacion.md`). Esta evidencia sigue siendo
+solo apoyo técnico: nunca fuente de reglas de negocio.

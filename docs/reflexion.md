@@ -2,6 +2,8 @@
 
 **Materia:** Metodología I · **Integrante:** Thiago Oviedo · **Tipo:** TP individual · **Fecha:** 2026-10-15
 
+**Actualización 2026-11-19:** este texto es el snapshot del 2026-10-15: las frases sobre `C-03` como "el siguiente en el árbol" corresponden a esa fecha. Hoy `C-03` está archivado (`CHANGES.md:171-173`), `openspec list --json` devuelve `{"changes": []}` y el siguiente change del roadmap es `C-06` (`AGENTS.md:82`).
+
 ## 1. Contexto y propósito
 
 El sistema nació de un problema concreto y verificado en el research: coordinar turnos odontológicos por teléfono o WhatsApp genera ida y vuelta, dobles reservas y tiempo perdido. La propuesta es una página de turnos para un consultorio: el paciente reserva online sin llamar, y el consultorio gestiona la agenda completa (profesionales, prestaciones, bloqueos) en un solo lugar.
