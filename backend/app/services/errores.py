@@ -34,6 +34,34 @@ class UsuarioRechazadoError(ErrorAuth):
         super().__init__(motivo)
 
 
+class ProfesionalNoEncontradoError(Exception):
+    def __init__(
+        self, motivo: str = "No se encontró el profesional solicitado."
+    ) -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
+class ProfesionalRechazadoError(Exception):
+    def __init__(self, motivo: str) -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
+class PrestacionNoEncontradaError(Exception):
+    def __init__(
+        self, motivo: str = "No se encontró la prestación solicitada."
+    ) -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
+class PrestacionRechazadaError(Exception):
+    def __init__(self, motivo: str) -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
 class TurnoRechazadoError(Exception):
     def __init__(self, motivo: str) -> None:
         self.motivo = motivo

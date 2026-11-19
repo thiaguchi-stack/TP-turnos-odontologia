@@ -10,7 +10,7 @@ from app import models  # noqa: F401  (registra los modelos en la metadata)
 from app.core.config import settings
 from app.core.handlers import registrar_manejadores_auth
 from app.db.arranque import preparar_base_de_datos
-from app.routers import auth, turnos
+from app.routers import auth, prestaciones, profesionales, turnos
 
 
 @asynccontextmanager
@@ -32,6 +32,8 @@ app.add_middleware(
 registrar_manejadores_auth(app)
 app.include_router(auth.router)
 app.include_router(turnos.router)
+app.include_router(profesionales.router)
+app.include_router(prestaciones.router)
 
 
 @app.get("/api/health")

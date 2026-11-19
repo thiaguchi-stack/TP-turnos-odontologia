@@ -193,7 +193,8 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 > `C-04`, `C-05` y `C-11` pueden proponerse en paralelo tras `C-03`. `C-06` espera `C-04`; `C-07` espera a los tres catálogos.
 
 ### [C-04] `profesionales-api`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` archivado (2026-11-19)
+- **Cierre (2026-11-19)**: implementación con TDD estricto (15/15 tareas), 197 tests pasados, Ruff limpio y `openspec validate c-04-profesionales-api --strict` sin observaciones. Auditoría de contrato de auth sin gaps en `docs/evidencias/audit-auth-c-04-profesionales-api.md`. Spec `profesionales` sincronizada al main (7 requirements / 22 escenarios). Change archivado en `openspec/changes/archive/2026-11-19-c-04-profesionales-api/`.
 - **Scope**: CRUD de profesionales + listado público
   - Modelos/schemas Pydantic: `ProfesionalCreate/Update/Read`
   - `GET /profesionales` (público: solo activos, para el selector de reserva), `GET /profesionales/{id}`
@@ -211,7 +212,8 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 ---
 
 ### [C-05] `prestaciones-api`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` archivado (2026-11-19)
+- **Cierre (2026-11-19)**: implementación con TDD estricto (11/11 tareas), 237 tests pasados, Ruff limpio y `openspec validate c-05-prestaciones-api --strict` sin observaciones. Auditoría de contrato de auth sin gaps en `docs/evidencias/audit-auth-c-05-prestaciones-api.md`. Spec `prestaciones-api` sincronizada al main (6 requirements / 19 escenarios); `openspec validate --specs` 6/6 válidas. Change archivado en `openspec/changes/archive/2026-11-19-c-05-prestaciones-api/`.
 - **Scope**: CRUD de prestaciones con duración variable
   - Schemas `PrestacionCreate/Update/Read`; validación `duracion_minutos > 0`
   - `GET /prestaciones` (público: activas, para reserva), `POST/PUT /prestaciones` (admin)
@@ -490,7 +492,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 | C-17 | hardening-privacidad | 5 — Datos/privacidad/entrega | CRITICO | C-09, C-10 |
 | C-18 | aceptacion-e2e-entrega | 5 — Datos/privacidad/entrega | MEDIO | C-12, C-13, C-14, C-15, C-16 |
 
-**Próximo change recomendado**: `C-04` (`profesionales-api`, governance BAJO; depende de `C-03`, ya archivado) → `/opsx-propose c-04-profesionales-api`, primero del fork de GATE 3; `C-05` (`prestaciones-api`) y `C-11` (`frontend-shell-auth`) pueden proponerse en paralelo (§Paralelismo por fase). `C-01`, `C-02` y `C-03` ya están archivados.
+**Próximo change recomendado**: `C-06` (`bloqueos-api`, governance MEDIO; depende de `C-04`, ya archivado) → `/opsx-propose c-06-bloqueos-api`. `C-11` (`frontend-shell-auth`) puede avanzarse en paralelo (§Paralelismo por fase). `C-01` a `C-05` ya están archivados; con `C-06` cerrado queda desbloqueado `C-07` (`agenda-engine`).
 
 ---
 
