@@ -1,8 +1,18 @@
+from collections.abc import Iterator
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
+import pytest
 from sqlalchemy import select
 
+from app.core import clock
 from app.models import Bloqueo, Profesional, Turno
+
+
+@pytest.fixture(autouse=True)
+def reloj_fijo() -> Iterator[None]:
+    with patch("app.core.clock.now", return_value=datetime(2026, 11, 4, 8, 0, 0)):
+        yield
 
 
 def _payload(datos, *, inicio="2026-11-05T09:00:00", **extra):
@@ -131,7 +141,7 @@ def test_201_bloqueo_de_otro_profesional_no_afecta(client, datos, db):
 
 
 def test_400_turno_en_el_pasado(client, datos, db):
-    en_el_pasado = (datetime.now() - timedelta(hours=2)).isoformat(timespec="seconds")
+    en_el_pasado = (clock.now() - timedelta(hours=2)).isoformat(timespec="seconds")
 
     respuesta = client.post("/turnos", json=_payload(datos, inicio=en_el_pasado))
 

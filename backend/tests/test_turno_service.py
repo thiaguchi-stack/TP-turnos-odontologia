@@ -1,13 +1,21 @@
+from collections.abc import Iterator
 from datetime import datetime, timedelta
 from unittest.mock import patch
 
 import pytest
 
+from app.core import clock
 from app.models import Bloqueo, Profesional, Turno
 from app.services.errores import TurnoRechazadoError, TurnoSolapadoError
 from app.services.turno_service import crear_turno
 
 FECHA = datetime(2026, 11, 5, 9, 0)
+
+
+@pytest.fixture(autouse=True)
+def reloj_fijo() -> Iterator[None]:
+    with patch("app.core.clock.now", return_value=datetime(2026, 11, 4, 8, 0, 0)):
+        yield
 
 
 def _crear(db, datos, *, inicio=FECHA, sillon=None, profesional=None, prestacion=None):
@@ -201,7 +209,7 @@ def test_turno_cancelado_no_bloquea_la_agenda(db, datos):
 
 
 def test_turno_en_el_pasado_es_rechazado(db, datos):
-    error = _rechazo(db, datos, inicio=datetime.now() - timedelta(hours=1))
+    error = _rechazo(db, datos, inicio=clock.now() - timedelta(hours=1))
     assert "pasado" in error.motivo.lower()
 
 
