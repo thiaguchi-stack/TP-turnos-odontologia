@@ -169,8 +169,8 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 ## FASE 1 — Acceso y seguridad
 
 ### [C-03] `auth-jwt-rbac`
-- **Estado**: `[ ]` pendiente
-- **Preparación SDD (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (`proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Gate **CRITICO aprobado** por el usuario el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`): se habilita la implementación con TDD estricto; no se archiva ni se marca `[x]` sin completar y verificar las 20 tareas.
+- **Estado**: `[x]` archivado (2026-11-18)
+- **Preparación SDD + cierre (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (`proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Gate **CRITICO aprobado** por el usuario el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`). Implementación completada con TDD estricto: 20/20 tareas verificadas, 151 tests pasados y Ruff limpio; spec `user-auth` sincronizada al main con `Sync now`. Change archivado en `openspec/changes/archive/2026-11-18-c-03-auth-jwt-rbac/`.
 - **Scope**: Autenticación JWT (OAuth2 password flow) + RBAC para admin/odontólogo
   - `POST /auth/login` → JWT Bearer (`sub`, `rol`, `profesional_id`, `exp`), hash bcrypt/argon2
   - Dependencias FastAPI: `get_current_user`, `require_role("admin")`, `require_odontologo_own` (RN-AU-02)
@@ -490,7 +490,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 | C-17 | hardening-privacidad | 5 — Datos/privacidad/entrega | CRITICO | C-09, C-10 |
 | C-18 | aceptacion-e2e-entrega | 5 — Datos/privacidad/entrega | MEDIO | C-12, C-13, C-14, C-15, C-16 |
 
-**Próximo change recomendado**: `C-03` (auth-jwt-rbac): governance CRITICO aprobado el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`), artefactos SDD preparados y gate cerrado → ejecutar `/opsx-apply c-03-auth-jwt-rbac`; no marcar `[x]` ni archivar hasta completar y verificar las 20 tareas (`C-01` y `C-02` ya archivados)
+**Próximo change recomendado**: `C-04` (`profesionales-api`, governance BAJO; depende de `C-03`, ya archivado) → `/opsx-propose c-04-profesionales-api`, primero del fork de GATE 3; `C-05` (`prestaciones-api`) y `C-11` (`frontend-shell-auth`) pueden proponerse en paralelo (§Paralelismo por fase). `C-01`, `C-02` y `C-03` ya están archivados.
 
 ---
 

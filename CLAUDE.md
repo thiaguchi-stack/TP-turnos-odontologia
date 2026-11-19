@@ -77,7 +77,7 @@ El plan completo está en [CHANGES.md](CHANGES.md). Resumen:
 - **Total**: 18 changes en 6 fases (Fase 0 Cimientos → Fase 5 Datos/privacidad/entrega).
 - **Camino crítico (10)**: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-08 → C-10 → C-13 → C-18`
   (el tramo de reserva online también mide 10: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-09 → C-11 → C-12 → C-18`).
-- **Próximo change**: `C-03` (`auth-jwt-rbac`, governance **CRITICO**: análisis y aprobación previa, sin código) → `/opsx-propose C-03-auth-jwt-rbac`. `C-01` y `C-02` ya están archivados. Su preparación se hará con la skill `auth-contract-audit` y el MCP `context` (análisis y evidencia; no cambia el estado del change ni habilita su implementación).
+- **Próximo change**: `C-04` (`profesionales-api`, governance BAJO, depende de `C-03` ya archivado) → `/opsx-propose c-04-profesionales-api`. `C-01`, `C-02` y `C-03` ya están archivados; `C-05` y `C-11` pueden proponerse en paralelo (GATE 3).
 - **Governance CRITICO**: `C-02` (core-models), `C-03` (auth-jwt-rbac), `C-17` (hardening-privacidad).
 
 **Antes de cualquier `/opsx-propose`**: leé [CHANGES.md](CHANGES.md), verificá que las dependencias estén archivadas, y leé los archivos de "Leer antes" del change.
