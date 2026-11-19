@@ -170,7 +170,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 
 ### [C-03] `auth-jwt-rbac`
 - **Estado**: `[ ]` pendiente
-- **Preparación SDD (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (`proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Queda **pendiente de aprobación de governance CRITICO**: no se escribió código, no se corrió apply y no se archivó.
+- **Preparación SDD (2026-11-18)**: artefactos preparados en `openspec/changes/c-03-auth-jwt-rbac/` (`proposal.md`, `design.md`, `specs/user-auth/spec.md`, `tasks.md`) con la skill `openspec-propose`, la auditoría de la skill propia `auth-contract-audit` y apoyo del MCP `context` (FastAPI 0.110.3 / passlib 1.7.4). `openspec validate --strict` sin observaciones. Evidencias: `docs/evidencias/audit-auth-c-03-auth-jwt-rbac.md` y `docs/evidencias/mcp-context-c03.md`. Gate **CRITICO aprobado** por el usuario el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`): se habilita la implementación con TDD estricto; no se archiva ni se marca `[x]` sin completar y verificar las 20 tareas.
 - **Scope**: Autenticación JWT (OAuth2 password flow) + RBAC para admin/odontólogo
   - `POST /auth/login` → JWT Bearer (`sub`, `rol`, `profesional_id`, `exp`), hash bcrypt/argon2
   - Dependencias FastAPI: `get_current_user`, `require_role("admin")`, `require_odontologo_own` (RN-AU-02)
@@ -490,7 +490,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 | C-17 | hardening-privacidad | 5 — Datos/privacidad/entrega | CRITICO | C-09, C-10 |
 | C-18 | aceptacion-e2e-entrega | 5 — Datos/privacidad/entrega | MEDIO | C-12, C-13, C-14, C-15, C-16 |
 
-**Próximo change recomendado**: `C-03` (auth-jwt-rbac, governance CRITICO): artefactos SDD preparados, pendiente de aprobación de governance; no ejecutar `/opsx-apply` ni marcar `[x]` sin esa aprobación (`C-01` y `C-02` ya archivados)
+**Próximo change recomendado**: `C-03` (auth-jwt-rbac): governance CRITICO aprobado el 2026-11-18 (`docs/evidencias/governance-c-03-aprobacion.md`), artefactos SDD preparados y gate cerrado → ejecutar `/opsx-apply c-03-auth-jwt-rbac`; no marcar `[x]` ni archivar hasta completar y verificar las 20 tareas (`C-01` y `C-02` ya archivados)
 
 ---
 

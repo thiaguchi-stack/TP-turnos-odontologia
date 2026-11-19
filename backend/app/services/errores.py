@@ -1,3 +1,39 @@
+class ErrorAuth(Exception):
+    """Error de autenticación o autorización con mensaje para la API."""
+
+
+class TokenInvalidoError(ErrorAuth):
+    def __init__(self, motivo: str = "Token inválido.") -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
+class TokenExpiradoError(TokenInvalidoError):
+    def __init__(self) -> None:
+        super().__init__("El token expiró.")
+
+
+class CredencialesInvalidasError(ErrorAuth):
+    def __init__(self) -> None:
+        super().__init__("Usuario o contraseña incorrectos.")
+
+
+class IntentosExcedidosError(ErrorAuth):
+    def __init__(self) -> None:
+        super().__init__("Demasiados intentos fallidos. Probá de nuevo más tarde.")
+
+
+class AccesoDenegadoError(ErrorAuth):
+    def __init__(self) -> None:
+        super().__init__("No tenés permiso para realizar esta operación.")
+
+
+class UsuarioRechazadoError(ErrorAuth):
+    def __init__(self, motivo: str) -> None:
+        self.motivo = motivo
+        super().__init__(motivo)
+
+
 class TurnoRechazadoError(Exception):
     def __init__(self, motivo: str) -> None:
         self.motivo = motivo

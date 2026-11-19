@@ -9,7 +9,7 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///./clinica.db"
     secret_key: str = "dev-insecure-cambiame-en-produccion"
-    token_expire_min: int = 60
+    token_expire_min: int = 480
     cors_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://localhost:5173"]
     )
