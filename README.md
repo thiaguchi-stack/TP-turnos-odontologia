@@ -180,7 +180,7 @@ Notas:
 
 - El extra `[dev]` (definido en `backend/pyproject.toml`) instala **ruff**; pytest, httpx y **alembic** ya vienen en las dependencias base.
 - Los tests usan SQLite **en memoria** (`DATABASE_URL=sqlite://` lo fija `backend/tests/conftest.py`); no tocan la base local ni pasan por Alembic. Estado actual: **114 tests passing**.
-- El frontend usa **TypeScript estricto** (`frontend/tsconfig.json`) y no admite `any`. Las rutas privadas y el interceptor JWT llegan en `C-03`/`C-19`; el `services/api.ts` actual es el wrapper base.
+- El frontend usa **TypeScript estricto** (`frontend/tsconfig.json`) y no admite `any`. Las rutas privadas y el interceptor JWT llegan en `C-11`; el `services/api.ts` actual es el wrapper con Bearer y manejo de 401.
 - Copiá `backend/.env.example` a `backend/.env` y `frontend/.env.example` a `frontend/.env` para configurar el entorno local.
 - Para la estructura por capas del backend y un ejemplo de uso de la API, ver [`backend/README.md`](backend/README.md).
 

@@ -1,11 +1,10 @@
-import Encabezado from "../components/Encabezado";
 import { formatearFecha } from "../shared/utils";
 
 export default function Home() {
   return (
-    <main>
-      <Encabezado titulo="Turnos del consultorio" />
+    <>
+      <h1>Turnos del consultorio</h1>
       <p>Reservá tu turno online. Hoy es {formatearFecha(new Date())}.</p>
-    </main>
+    </>
   );
 }

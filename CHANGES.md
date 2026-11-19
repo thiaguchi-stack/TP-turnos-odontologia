@@ -326,7 +326,8 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 ## FASE 4 — Frontend
 
 ### [C-11] `frontend-shell-auth`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` archivado (2026-11-19)
+- **Cierre (2026-11-19)**: 28/28 tareas verificadas, 49/49 tests, smoke 15/15 pasos HTTP y typecheck/lint/build exit 0 (evidencia en `docs/evidencias/verify-c-11-frontend-shell-auth.md`; auditoría de auth en `docs/evidencias/audit-auth-c-11-frontend-shell-auth.md`). Spec `spa-auth-session` sincronizada al main (7 requirements / 15 escenarios). Change archivado en `openspec/changes/archive/2026-11-19-c-11-frontend-shell-auth/`. Riesgos documentados: `/api/health` responde 404 por el `rewrite` del proxy (la SPA no lo consume) y `alembic_version` de `backend/clinica.db` estaba vacío (preexistente; corregido el mismo día con `alembic stamp head` sobre la DB local, sin borrar datos); el E2E real de navegador queda para C-18.
 - **Scope**: Cascarón de la SPA + autenticación en el cliente
   - Router con zonas pública y protegida (`ProtectedRoute`); layout, navegación por rol
   - `services/api.ts`: wrapper fetch con interceptor JWT (Bearer), manejo de 401 → logout
@@ -339,7 +340,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 - **Leer antes**:
   - `knowledge-base/03_actores_y_roles.md` §Actores, §Rutas públicas
   - `knowledge-base/08_arquitectura_propuesta.md` §SPA con zona pública + privada, §Estructura de directorios (frontend)
-  - `knowledge-base/07_flujos_principales.md` §Flujo 2 (Login)
+  - `knowledge-base/07_flujos_principales.md:33` §Flujo 2 — Gestión de agenda (admin), paso `[Login] POST /auth/login → JWT (rol admin)`
 
 ---
 
@@ -492,7 +493,7 @@ Paso │ Agente A (Backend Core)   │ Agente B (Backend Aux)     │ Agente C (
 | C-17 | hardening-privacidad | 5 — Datos/privacidad/entrega | CRITICO | C-09, C-10 |
 | C-18 | aceptacion-e2e-entrega | 5 — Datos/privacidad/entrega | MEDIO | C-12, C-13, C-14, C-15, C-16 |
 
-**Próximo change recomendado**: `C-06` (`bloqueos-api`, governance MEDIO; depende de `C-04`, ya archivado) → `/opsx-propose c-06-bloqueos-api`. `C-11` (`frontend-shell-auth`) puede avanzarse en paralelo (§Paralelismo por fase). `C-01` a `C-05` ya están archivados; con `C-06` cerrado queda desbloqueado `C-07` (`agenda-engine`).
+**Próximo change recomendado**: `C-06` (`bloqueos-api`, governance MEDIO; depende de `C-04`, ya archivado) → `/opsx-propose c-06-bloqueos-api`. `C-01` a `C-05` y `C-11` ya están archivados (este último, con sync de `spa-auth-session`); con `C-06` cerrado queda desbloqueado `C-07` (`agenda-engine`).
 
 ---
 

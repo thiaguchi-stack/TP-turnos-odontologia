@@ -1,16 +1,16 @@
-const ZONA_HORARIA = "America/Argentina/Buenos_Aires";
+const ZONA_DEL_CONSULTORIO = "America/Argentina/Buenos_Aires";
 
 export function formatearFecha(fecha: Date): string {
   return new Intl.DateTimeFormat("es-AR", {
     dateStyle: "short",
-    timeZone: ZONA_HORARIA,
+    timeZone: ZONA_DEL_CONSULTORIO,
   }).format(fecha);
 }
 
 export function formatearHora(fecha: Date): string {
   return new Intl.DateTimeFormat("es-AR", {
     timeStyle: "short",
-    timeZone: ZONA_HORARIA,
+    timeZone: ZONA_DEL_CONSULTORIO,
   }).format(fecha);
 }
 
