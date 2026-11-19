@@ -52,10 +52,21 @@ La fuente de verdad del dominio vive en `knowledge-base/`. **Leé el archivo rel
 | **Orquestación / Fundación** | Coordina las fases de fundación y el state file | `active-orchestrator`, `kb-creator`, `roadmap-generator`, `agents-md-generator` |
 | **Discovery / Research** | Investigación de mercado antes de armar la KB | `discovery-research`, `web-scraper`, `find-skills` |
 | **Implementación (Backend Core / Backend Aux / Frontend)** | Flujo SDD de OpenSpec sobre los changes | `openspec-explore`, `openspec-propose`, `openspec-apply-change`, `openspec-archive-change`, `openspec-sync-specs`, `openspec-update-change` |
+| **Skill propia / auditoría de auth** | Revisión previa del contrato de seguridad de changes de auth (JWT, RBAC, RN-AU), sin escribir código de producción | `auth-contract-audit` — usar al preparar o revisar C-03 y cualquier change con login, tokens, roles o endpoints protegidos |
 
-> Nota: hoy **no hay skills de stack instaladas** (FastAPI/React/testing). Si un agente necesita una skill específica, usar `find-skills` para buscar/recomendar e instalar solo con permiso explícito del usuario.
+> Nota: hoy **no hay skills de stack instaladas** (FastAPI/React/testing). Sí hay una skill propia del proyecto, `auth-contract-audit`, de auditoría de auth (no de stack). Si un agente necesita una skill específica, usar `find-skills` para buscar/recomendar e instalar solo con permiso explícito del usuario.
 
 > Los compact rules de cada skill los resuelve el orquestador desde `.atl/skill-registry.md` (generado por `skill-registry`; versionado en el repo). Esta tabla solo mapea skill→rol.
+
+---
+
+## Integraciones MCP
+
+| Servidor | Propósito y capacidades | Momento de uso | Límites |
+|----------|-------------------------|----------------|---------|
+| `context` (`@neuledge/context@1`, local por stdio) | Documentación **versionada** local (`install`, `add`, `list`, `query`) para decidir firmas y hashing sin depender de un índice mutable; paquetes `fastapi@0.110.3` y `passlib@1.7.4` | Al preparar o revisar changes de auth o del stack (por ejemplo C-03); nunca como fuente de reglas de negocio | Solo lectura de documentación; sin secretos ni credenciales; sin datos de pacientes; **la KB prevalece** sobre la doc |
+
+> La config vive en `~/.config/opencode/opencode.json` (fuera del repo, formato V1 de OpenCode 1.19.3) y se reproduce desde [`docs/skills-mcp/README.md`](docs/skills-mcp/README.md). Es **tooling de desarrollo**, no una integración externa del producto: la regla dura "Ninguna integración externa en v1" sigue vigente.
 
 ---
 
@@ -66,7 +77,7 @@ El plan completo está en [CHANGES.md](CHANGES.md). Resumen:
 - **Total**: 18 changes en 6 fases (Fase 0 Cimientos → Fase 5 Datos/privacidad/entrega).
 - **Camino crítico (10)**: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-08 → C-10 → C-13 → C-18`
   (el tramo de reserva online también mide 10: `C-01 → C-02 → C-03 → C-04 → C-06 → C-07 → C-09 → C-11 → C-12 → C-18`).
-- **Próximo change**: `C-03` (`auth-jwt-rbac`, governance **CRITICO**: análisis y aprobación previa, sin código) → `/opsx-propose C-03-auth-jwt-rbac`. `C-01` y `C-02` ya están archivados.
+- **Próximo change**: `C-03` (`auth-jwt-rbac`, governance **CRITICO**: análisis y aprobación previa, sin código) → `/opsx-propose C-03-auth-jwt-rbac`. `C-01` y `C-02` ya están archivados. Su preparación se hará con la skill `auth-contract-audit` y el MCP `context` (análisis y evidencia; no cambia el estado del change ni habilita su implementación).
 - **Governance CRITICO**: `C-02` (core-models), `C-03` (auth-jwt-rbac), `C-17` (hardening-privacidad).
 
 **Antes de cualquier `/opsx-propose`**: leé [CHANGES.md](CHANGES.md), verificá que las dependencias estén archivadas, y leé los archivos de "Leer antes" del change.

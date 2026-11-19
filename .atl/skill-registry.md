@@ -16,6 +16,7 @@ See `_shared/skill-resolver.md` for the full resolution protocol.
 | crear/generar/actualizar AGENTS.md o CLAUDE.md, "armar las reglas del proyecto", "instrucciones para los agentes" | agents-md-generator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\agent-instruction\SKILL.md |
 | investigar/scrapear un competidor a partir de una URL (nota markdown de esquema fijo) — sub-skill de discovery-research | web-scraper | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\web-scraper\SKILL.md |
 | crear una skill desde cero, editar/mejorar una skill existente, correr evals/benchmarks o optimizar el trigger de una skill | skill-creator | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\skill-creator\SKILL.md |
+| auditar contrato de seguridad de auth, revisar RBAC/JWT en un change de login, chequear RN-AU antes de proponer un change | auth-contract-audit | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\auth-contract-audit\SKILL.md |
 | openspec explore / opsx explore — pensar un problema antes o durante un change | openspec-explore | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-explore\SKILL.md |
 | openspec propose / opsx propose — proponer un change con todos los artifacts | openspec-propose | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-propose\SKILL.md |
 | openspec apply / opsx apply / openspec implement — implementar los tasks de un change | openspec-apply-change | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.opencode\skills\openspec-apply-change\SKILL.md |
@@ -99,6 +100,15 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 - Prohibido malware/exploits ni skills engañosas o de acceso no autorizado (principle of lack of surprise).
 - Optimización de description al final (evals de triggers + loop) solo cuando la skill está estable; aplicar el resultado y re-testear.
 
+### auth-contract-audit
+- Activarse al preparar/proponer/implementar/revisar changes de auth (JWT, OAuth2 password flow, login, `require_role`, `require_odontologo_own`, hashing); caso principal `C-03`, `governance CRITICO`. Es solo revisión: NUNCA escribe código de producción ni aprueba el change.
+- Leer la KB ANTES del MCP: `03_actores_y_roles.md`, `05_reglas_de_negocio.md` (RN-AU-01..04, RN-DATOS-01/02), `08_arquitectura_propuesta.md` (Seguridad), `09_decisiones_y_supuestos.md` (DD-07/DD-08); transcribir con texto exacto y cita `archivo:línea`. Ante conflicto prevalece la KB / `AGENTS.md`.
+- Procedimiento en 6 pasos: (1) transcribir reglas con su fuente; (2) mapear endpoints/roles a reglas (el "no aplica" lleva motivo); (3) exigir escenarios de éxito, error de negocio (401/403) y borde; (4) verificar que cada escenario tenga prueba explícita en `tasks.md` (pytest/TestClient/código HTTP); (5) chequear reglas duras (sin `password_hash` expuesto ni logueado, RBAC donde corresponda, sin `estado` desde reserva pública, sin secretos ni datos reales, lógica en servicios, sin código de producción); (6) emitir el informe.
+- Salida: `docs/evidencias/audit-auth-<change>.md` con tabla regla / escenario / evidencia (`archivo:línea`), gaps priorizados y conclusión `Listo para implementar` o `Requiere ajustes`; la conclusión no reemplaza el gate humano de governance.
+- El MCP `context` (`fastapi@0.110.3`, `passlib@1.7.4`) se usa solo para confirmar firmas y hashing; NUNCA como origen de reglas de negocio.
+- Distinguir `Verificado` (evidencia leída) de `No verificado` (sin evidencia o artefacto ausente): todo hallazgo cita regla, KB o `archivo:línea`; sin secretos ni datos de pacientes.
+- Responder siempre en español rioplatense (voseo).
+
 ### openspec-explore
 - Modo pensar, NO implementar: read-only sin confirmación; nunca escribir código ni features.
 - Antes de cualquier acción write-capable (incluye `openspec new change`): nombrar artifacts/archivos a cambiar, preguntar sí/no, esperar confirmación en mensaje separado.
@@ -169,5 +179,6 @@ Pre-digested rules per skill. Delegators copy matching blocks into sub-agent pro
 | knowledge-base/08_arquitectura_propuesta.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\08_arquitectura_propuesta.md | Referenced by AGENTS.md/CLAUDE.md |
 | knowledge-base/09_decisiones_y_supuestos.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\09_decisiones_y_supuestos.md | Referenced by AGENTS.md/CLAUDE.md |
 | knowledge-base/10_preguntas_abiertas.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\knowledge-base\10_preguntas_abiertas.md | Referenced by AGENTS.md/CLAUDE.md |
+| auth-contract-audit/SKILL.md | C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia\.agents\skills\auth-contract-audit\SKILL.md | Skill propia de auditoría de auth; ruta repo-relativa para portabilidad: `.agents/skills/auth-contract-audit/SKILL.md` (trigger en español en User Skills) |
 
 Read the convention files listed above for project-specific patterns and rules. All referenced paths have been extracted — no need to read index files to discover more.

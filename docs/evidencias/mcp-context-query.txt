@@ -1,0 +1,63 @@
+Evidencia — MCP local `context` (`@neuledge/context@1`)
+Fecha: 2026-11-18. Repo: `C:\Facultad\3er Semestre\Metodologia I\TP-turnos-odontologia`.
+Salida real de los comandos, recortada a lo relevante (sin secretos ni hashes de ejemplo).
+
+---
+$ npx -y @neuledge/context@1 list
+---
+Installed packages:
+
+  fastapi@0.110.3            1.7 MB    824 sections
+  passlib@1.7.4            764.0 KB    152 sections
+
+Total: 2 packages (2.5 MB)
+
+---
+$ npx -y @neuledge/context@1 query fastapi "OAuth2PasswordRequestForm"
+---
+{
+  "library": "fastapi@0.110.3",
+  "version": "0.110.3",
+  "results": [
+    {
+      "title": "simple-oauth2 > Code to get the username and password",
+      "content": "Now let's use the utilities provided by **FastAPI** to handle this.\n\n### `OAuth2PasswordRequestForm`\n\nFirst, import `OAuth2PasswordRequestForm`, and use it as a dependency with `Depends` in the *path operation* for `/token`: ... `OAuth2PasswordRequestForm` is a class dependency that declares a form body with:\n\n* The `username`.\n* The `password`.\n* An optional `scope` field ... * An optional `grant_type`. ... !!! tip\n    The OAuth2 spec actually *requires* a field `grant_type` with a fixed value of `password`, but `OAuth2PasswordRequestForm` doesn't enforce it.\n\n    If you need to enforce it, use `OAuth2PasswordRequestFormStrict` instead of `OAuth2PasswordRequestForm`. ... !!! info\n    The `OAuth2PasswordRequestForm` is not a special class for **FastAPI** as is `OAuth2PasswordBearer`. ... The instance of the dependency class `OAuth2PasswordRequestForm` won't have an attribute `scope` with the long string separated by spaces, instead, it will have a `scopes` attribute with the actual list of strings for each scope sent.",
+      "source": "docs/en/docs/tutorial/security/simple-oauth2.md"
+    },
+    {
+      "title": "index > Introduction",
+      "content": "... You can import them from `fastapi.security`:\n\n```python\nfrom fastapi.security import (\n    APIKeyCookie,\n    APIKeyHeader,\n    APIKeyQuery,\n    HTTPAuthorizationCredentials,\n    HTTPBasic,\n    HTTPBasicCredentials,\n    HTTPBearer,\n    HTTPDigest,\n    OAuth2,\n    OAuth2AuthorizationCodeBearer,\n    OAuth2PasswordBearer,\n    OAuth2PasswordRequestForm,\n    OAuth2PasswordRequestFormStrict,\n    OpenIdConnect,\n    SecurityScopes,\n)\n```",
+      "source": "docs/en/docs/reference/security/index.md"
+    },
+    {
+      "title": "index > OAuth2 Password Form",
+      "content": "::: fastapi.security.OAuth2PasswordRequestForm\n\n::: fastapi.security.OAuth2PasswordRequestFormStrict",
+      "source": "docs/en/docs/reference/security/index.md"
+    },
+    {
+      "title": "oauth2-scopes > JWT token with scopes",
+      "content": "... We are still using the same `OAuth2PasswordRequestForm`. It includes a property `scopes` with a `list` of `str` ... And we return the scopes as part of the JWT token. ... !!! danger\n    For simplicity, here we are just adding the scopes received directly to the token.\n\n    But in your application, for security, you should make sure you only add the scopes that the user is actually able to have ...",
+      "source": "docs/en/docs/advanced/security/oauth2-scopes.md"
+    }
+  ]
+}
+
+---
+$ npx -y @neuledge/context@1 query passlib "CryptContext"
+---
+{
+  "library": "passlib@1.7.4",
+  "version": "1.7.4",
+  "results": [
+    {
+      "title": "passlib.context > Introduction (part 4)",
+      "content": "... Passing keys with this format to the :class:`CryptContext` constructor allows you to specify conditional context and algorithm options ... The main interface to the CryptContext object deliberately mirrors the :ref:`PasswordHash <password-hash-api>` interface ... Most applications will only need to make use two methods in a CryptContext instance: ... .. automethod:: CryptContext.hash ... .. automethod:: CryptContext.verify ... .. automethod:: CryptContext.identify ... .. automethod:: CryptContext.dummy_verify ... Hash Migration ... .. automethod:: CryptContext.verify_and_update ... .. automethod:: CryptContext.needs_update ... .. automethod:: CryptContext.hash_needs_update ... Disabled Hash Managment ... .. automethod:: CryptContext.disable ... .. automethod:: CryptContext.enable ... .. automethod:: CryptContext.is_enabled ... Alternate Constructors ... .. automethod:: CryptContext.from_string ... .. automethod:: CryptContext.from_path ... .. automethod:: CryptContext.copy ... Changing the Configuration ... :class:`CryptContext` objects can have their configuration replaced or updated on the fly ...",
+      "source": "docs/lib/passlib.context.rst"
+    }
+  ]
+}
+
+Resumen: los tres comandos terminaron con éxito; las consultas devolvieron
+resultados de las versiones fijadas (`fastapi@0.110.3`, `passlib@1.7.4`). Los
+fragmentos marcados con `...` son recortes de la salida original; los ejemplos
+de hashes de la documentación de passlib se omitieron a propósito.

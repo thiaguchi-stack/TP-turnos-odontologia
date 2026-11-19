@@ -25,6 +25,10 @@ Rutas relativas a la raíz del repo. Todo en español rioplatense.
 | [verify-c-02-core-models.md](verify-c-02-core-models.md) | Verificación del change archivado `c-02-core-models`: trazabilidad spec → tests (9 requirements, modelos, enums, auditoría, horarios, seed, migraciones). | ✅ |
 | [pytest-c-01-c-02-modelos.txt](pytest-c-01-c-02-modelos.txt) | Salida completa `pytest -v` ejecutada para validar C-01 y C-02 (112 tests). | ✅ |
 | [ruff-c-01-c-02-modelos.txt](ruff-c-01-c-02-modelos.txt) | Salida de `ruff check backend` + `ruff format --check backend` (C-01+C-02). | ✅ |
+| [skill-auth-contract-audit.md](skill-auth-contract-audit.md) | Creación y validación de la skill propia `auth-contract-audit` (auth contract audit para C-03). | ✅ |
+| [mcp-context-query.txt](mcp-context-query.txt) | Salida cruda recortada de `context list` y `context query` (fastapi@0.110.3, passlib@1.7.4), 2026-11-18. | ✅ |
+| [audit-auth-c-03-auth-jwt-rbac.md](audit-auth-c-03-auth-jwt-rbac.md) | Auditoría del contrato de auth de C-03: reglas transcriptas con cita, mapa regla/escenario/evidencia, gaps priorizados y correcciones antes/después en los artefactos. Solo revisión; no autoriza implementar (`governance CRITICO`). | ✅ |
+| [mcp-context-c03.md](mcp-context-c03.md) | Llamadas reales a `context_get_docs` (FastAPI 0.110.3 y passlib 1.7.4): solicitudes exactas, recortes de respuesta (incluido el reintento tras un query sin resultados) y decisión de diseño apoyada por cada una. | ✅ |
 
 ## Pendientes (no inventados, no creados)
 

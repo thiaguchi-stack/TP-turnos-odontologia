@@ -166,6 +166,37 @@ mem_save(
 
 `topic_key` ensures upserts — running again updates the same observation.
 
+#### C. Ensure `_shared/skill-resolver.md` exists (idempotent):
+
+Create `{project-root}/_shared/skill-resolver.md` **only if it is missing**. NEVER overwrite an existing one — the team may have customized it. This closes the reference emitted in the Step 3 template. Write this compact protocol (the doc is foundation, not a skill, and Step 1 already skips `_shared` when scanning):
+
+```markdown
+# Skill Resolver Protocol
+
+Documento de fundación (no es una skill). Lo consume el agente que delega trabajo.
+
+## Cuándo ejecutarlo
+- Antes de cada delegación con `task`.
+- Tras instalar/quitar skills: regenerar `.atl/skill-registry.md` con la skill `skill-registry`.
+
+## Procedimiento
+1. Leer `.atl/skill-registry.md` una vez por sesión; fallback `.agents/SKILLS.md`; si no hay ninguno, omitir la sección y dejar constancia.
+2. Seleccionar solo los bloques `### <skill>` cuyo trigger coincida con las tareas del cambio.
+3. Copiarlos enteros bajo `## Project Standards (auto-resolved)` en el prompt del sub-agente. El sub-agente no lee el registry ni los SKILL.md por iniciativa propia.
+4. Pasar la ruta del `SKILL.md` como contexto, no su contenido.
+
+## Resolución de rutas
+- Primario: skills del proyecto; fallback: skills de usuario (nunca instalar ahí).
+- Dedupe por nombre (gana el proyecto). Excluir `sdd-*`, `_shared` y `skill-registry`.
+
+## Gotchas
+- Una skill nueva del repo no aparece en la herramienta Skill hasta una sesión que la cargue; el descubrimiento por registry/AGENTS.md funciona.
+- Un MCP no es una skill: documentarlo como integración, no registrarlo acá.
+- La KB prevalece sobre documentación externa.
+```
+
+Adding this step does NOT change the registry output, the skill scan, or the engram save — it only adds a missing foundation doc.
+
 ### Step 5: Return Summary
 
 ```markdown
@@ -174,6 +205,7 @@ mem_save(
 **Project**: {project name}
 **Location**: .atl/skill-registry.md
 **Engram**: {saved / not available}
+**Resolver protocol**: {created / already present} — `_shared/skill-resolver.md`
 
 ### User Skills Found
 | Skill | Trigger |
@@ -194,6 +226,7 @@ To update after installing/removing skills, run this again.
 ## Rules
 
 - ALWAYS write `.atl/skill-registry.md` regardless of any SDD persistence mode
+- ALWAYS ensure `_shared/skill-resolver.md` exists: create it if missing, never overwrite it
 - ALWAYS save to engram if the `mem_save` tool is available
 - SKIP `sdd-*`, `_shared`, and `skill-registry` directories when scanning
 - Read SKILL.md files (respecting the 200-line guard in Step 1) to generate accurate compact rules — this is a build-time cost, not a runtime cost

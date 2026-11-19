@@ -32,6 +32,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 | Backend (implementación) | [`backend/app/`](backend/app/) → detalle en [`backend/README.md`](backend/README.md) | ✅ |
 | Tests | [`backend/tests/`](backend/tests/) | ✅ 114 passing |
 | Evidencias (verify + trazabilidad, pytest/ruff, explore, skills) | [`docs/evidencias/`](docs/evidencias/) | ✅ |
+| Config reproducible del MCP `context` + investigación de skills/MCP | [`docs/skills-mcp/README.md`](docs/skills-mcp/README.md), [`docs/skills-mcp/investigacion.md`](docs/skills-mcp/investigacion.md) | ✅ |
 | Reflexión final | [`docs/reflexion.pdf`](docs/reflexion.pdf) (+ [`docs/reflexion.md`](docs/reflexion.md)) | ✅ |
 | Frontend (React + Vite) | [`frontend/`](frontend/) (scaffold C-01: Vite + React 18 + TS) | ✅ scaffold |
 
@@ -64,6 +65,7 @@ Sistema de gestión de turnos para un consultorio odontológico — trabajo prá
 │   ├── bitacora-inspeccion.md
 │   ├── evidencias/              Verify + trazabilidad, pytest/ruff, explore, skills
 │   ├── reflexion.md/.html/.pdf  Reflexión final (PDF es el entregable)
+│   ├── skills-mcp/              Config reproducible del MCP context + ficha de investigación
 │   └── explore/                 Relevamientos OPSX
 ├── openspec/
 │   ├── specs/turnos/            Spec vigente (capability turnos)
@@ -196,6 +198,7 @@ Reglas de negocio aplicadas: `fecha_hora_fin = inicio + duracion_minutos(prestac
 - `knowledge-base/01_vision_y_objetivos.md` → `10_preguntas_abiertas.md` (leer el archivo relevante antes de tocar cada área).
 - `CHANGES.md` → plan completo: dependencias, paralelismo, camino crítico y governance por change.
 - `AGENTS.md` → reglas duras del proyecto (no romperlas).
+- [`docs/skills-mcp/README.md`](docs/skills-mcp/README.md) → cómo instalar y consultar el MCP local de documentación versionada (`context`), sin secretos.
 - `openspec/` → specs vigentes (`specs/`) y changes en curso o archivados (`changes/`).
 
 ## Notas de entrega
